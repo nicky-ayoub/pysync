@@ -1,0 +1,4 @@
+#labels git,vcs,Phase-Design
+Git is a distributed VCS. Centralized VCS is a special case of distributed VCS, where one repository is singled out as the 'canonical' repo. Conceptually it should be possible to emulate the behavior of a centralized VCS like SVN over git, but not vice versa.
+
+The following is a (crappy) ER diagram outlining the Git model.
