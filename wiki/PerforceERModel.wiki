@@ -1,0 +1,13 @@
+#summary Perforce model of the world
+#labels Phase-Design,perforce,diagrams
+
+= Introduction =
+
+Perforce is a centralized version control system. Of particular note:
+ * The centralized server keeps track of client workspaces and even which files are open in the workspaces
+ * Branches are directories but p4 keeps track of the origins of files
+ * A depot is just a container for a numbered series of changesets. 
+
+= Diagram =
+http://pysync.googlecode.com/svn/wiki/media/perforce.png
+
