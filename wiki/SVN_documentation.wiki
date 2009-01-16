@@ -1,0 +1,22 @@
+#labels svn,diagrams
+SVN is a centralized VCS, meaning that only one master copy of the software is used.
+
+<ul>
+  <li> Subversion itself does not distinguish between a tag, a branch, and a directory 
+  </li>
+  <li> Natively client/server, layered library design.
+  </li>
+  <li> The Subversion file system can be described as a three dimensional filesystem. Since most representations of a directory tree (e.g., tree view) are two dimensional, the added dimension is that of revisions. Each revision in a Subversion file system has its own root, which is used to access contents at that revision. Files are stored as links to the most recent change; thus a Subversion repository is quite compact.
+  </li>
+</ul>
+
+
+<b> I made a couple of basic ER diagrams showing the svn architecture </b>
+
+<br />
+http://pysync.googlecode.com/files/svn_ER1.jpg
+
+<br />
+<b> and its relationships: </b>
+<br />
+http://pysync.googlecode.com/files/svn_ER2.jpg
