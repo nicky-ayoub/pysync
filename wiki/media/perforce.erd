@@ -3,133 +3,157 @@
   <elements>
     <entity gen_position="0" id="840087222" name="Domain" pname="Domain"
       sname="DOMAIN" sql_sequenz_name="">
-      <position h="-1" w="-1" x="61" y="63"/>
+      <position h="-1" w="-1" x="64" y="174"/>
     </entity>
     <entity gen_position="0" id="-102552949" name="Server"
       pname="Server" sname="SERVER" sql_sequenz_name="">
-      <position h="-1" w="-1" x="265" y="67"/>
+      <position h="-1" w="-1" x="268" y="178"/>
     </entity>
     <entity gen_position="0" id="-1945711095" name="Workspace"
       pname="Workspace" sname="WORKSPACE" sql_sequenz_name="">
-      <position h="-1" w="-1" x="244" y="197"/>
+      <position h="-1" w="-1" x="483" y="308"/>
     </entity>
     <relation gen_position="0" id="-1125849101" makeTable="true"
       name="Managed by" pname="Managed by" sname="MANAGED BY" sql_sequenz_name="">
-      <position h="-1" w="-1" x="143" y="57"/>
+      <position h="-1" w="-1" x="146" y="168"/>
     </relation>
     <entity gen_position="0" id="1194655972" name="Changelist"
       pname="Changelist" sname="CHANGELIST" sql_sequenz_name="">
-      <position h="-1" w="-1" x="632" y="64"/>
+      <position h="-1" w="-1" x="871" y="175"/>
       <attribute fkeytbl="" foreignkey="false" genType="None" length="0"
         name="date" notnull="false" primarykey="false" type="VARCHAR" unique="false">
-        <position h="-1" w="-1" x="518" y="10"/>
+        <position h="-1" w="-1" x="757" y="121"/>
       </attribute>
       <attribute fkeytbl="" foreignkey="false" genType="None" length="0"
         name="committer" notnull="false" primarykey="false"
         type="VARCHAR" unique="false">
-        <position h="-1" w="-1" x="577" y="9"/>
+        <position h="-1" w="-1" x="816" y="120"/>
       </attribute>
-      <attribute fkeytbl="" foreignkey="false" genType="" length="0"
+      <attribute fkeytbl="" foreignkey="false" genType="None" length="0"
         name="message" notnull="false" primarykey="false" type="VARCHAR" unique="false">
-        <position h="-1" w="-1" x="666" y="9"/>
+        <position h="-1" w="-1" x="905" y="120"/>
       </attribute>
-      <attribute fkeytbl="" foreignkey="false" genType="" length="0"
+      <attribute fkeytbl="" foreignkey="false" genType="None" length="0"
         name="number" notnull="false" primarykey="false" type="VARCHAR" unique="false">
-        <position h="-1" w="-1" x="746" y="10"/>
+        <position h="-1" w="-1" x="985" y="121"/>
       </attribute>
     </entity>
     <relation gen_position="0" id="1044568216" makeTable="true"
-      name="contains" pname="contains" sname="CONTAINS" sql_sequenz_name="">
-      <position h="-1" w="-1" x="338" y="55"/>
+      name="stores" pname="contains" sname="CONTAINS" sql_sequenz_name="">
+      <position h="-1" w="-1" x="577" y="166"/>
     </relation>
     <entity gen_position="0" id="-583515193" name="Depot" pname="Depot"
       sname="DEPOT" sql_sequenz_name="">
-      <position h="-1" w="-1" x="453" y="63"/>
+      <position h="-1" w="-1" x="692" y="174"/>
     </entity>
     <relation gen_position="0" id="-2099640748" makeTable="true"
       name="contains" pname="contains" sname="CONTAINS" sql_sequenz_name="">
-      <position h="-1" w="-1" x="515" y="55"/>
+      <position h="-1" w="-1" x="754" y="166"/>
     </relation>
     <entity gen_position="0" id="1362766839" name="Directory"
       pname="Directory" sname="DIRECTORY" sql_sequenz_name="">
-      <position h="-1" w="-1" x="1034" y="61"/>
+      <position h="-1" w="-1" x="1255" y="172"/>
     </entity>
     <relation gen_position="0" id="1587342485" makeTable="true"
       name="Implies" pname="Implies" sname="IMPLIES" sql_sequenz_name="">
-      <position h="-1" w="-1" x="926" y="50"/>
+      <position h="-1" w="-1" x="1165" y="161"/>
     </relation>
     <relation gen_position="0" id="-554769679" makeTable="true"
       name="Client" pname="Client" sname="CLIENT" sql_sequenz_name="">
-      <position h="-1" w="-1" x="318" y="127"/>
+      <position h="-1" w="-1" x="557" y="238"/>
     </relation>
     <entity gen_position="0" id="1156704274" name="Label" pname="Label"
       sname="LABEL" sql_sequenz_name="">
-      <position h="-1" w="-1" x="630" y="183"/>
+      <position h="-1" w="-1" x="869" y="294"/>
     </entity>
     <entity gen_position="0" id="-1722268499" name="File revision"
       pname="File revision" sname="FILE REVISION" sql_sequenz_name="">
-      <position h="-1" w="-1" x="707" y="297"/>
+      <position h="-1" w="-1" x="946" y="408"/>
       <attribute fkeytbl="" foreignkey="false" genType="None"
         length="-1" name="Contents" notnull="false" primarykey="false"
         type="VARCHAR" unique="false">
-        <position h="-1" w="-1" x="800" y="273"/>
+        <position h="-1" w="-1" x="1039" y="384"/>
       </attribute>
       <attribute fkeytbl="" foreignkey="false" genType="None"
         length="-1" name="Type" notnull="false" primarykey="false"
         type="VARCHAR" unique="false">
-        <position h="-1" w="-1" x="814" y="322"/>
+        <position h="-1" w="-1" x="1053" y="433"/>
       </attribute>
     </entity>
     <entity gen_position="0" id="1979921374" name="Path" pname="Path"
       sname="PATH" sql_sequenz_name="">
-      <position h="-1" w="-1" x="851" y="61"/>
+      <position h="-1" w="-1" x="1090" y="172"/>
     </entity>
     <entity gen_position="0" id="979464525" name="View" pname="View"
       sname="VIEW" sql_sequenz_name="">
-      <position h="-1" w="-1" x="442" y="293"/>
+      <position h="-1" w="-1" x="681" y="404"/>
       <attribute fkeytbl="" foreignkey="false" genType="None"
         length="-1" name="View spec" notnull="false" primarykey="false"
         type="VARCHAR" unique="false">
-        <position h="-1" w="-1" x="418" y="323"/>
+        <position h="-1" w="-1" x="657" y="434"/>
       </attribute>
     </entity>
     <relation gen_position="0" id="387542177" makeTable="true"
       name="instantiates" pname="has-a" sname="HAS-A" sql_sequenz_name="">
-      <position h="-1" w="-1" x="326" y="233"/>
+      <position h="-1" w="-1" x="565" y="344"/>
     </relation>
     <relation gen_position="0" id="489351774" makeTable="true"
       name="tags" pname="tags" sname="TAGS" sql_sequenz_name="">
-      <position h="-1" w="-1" x="530" y="234"/>
+      <position h="-1" w="-1" x="769" y="345"/>
     </relation>
     <relation gen_position="0" id="424188234" makeTable="true"
       name="has" pname="has" sname="HAS" sql_sequenz_name="">
-      <position h="-1" w="-1" x="522" y="114"/>
+      <position h="-1" w="-1" x="761" y="225"/>
     </relation>
     <relation gen_position="0" id="2097913212" makeTable="true"
       name="references" pname="shows" sname="SHOWS" sql_sequenz_name="">
-      <position h="-1" w="-1" x="574" y="288"/>
+      <position h="-1" w="-1" x="813" y="399"/>
     </relation>
     <relation gen_position="0" id="-146146835" makeTable="true"
       name="ancestors" pname="ancestors" sname="ANCESTORS" sql_sequenz_name="">
-      <position h="46" w="100" x="688" y="361"/>
+      <position h="46" w="100" x="927" y="472"/>
     </relation>
     <relation gen_position="0" id="1395320907" makeTable="true"
       name="references" pname="references" sname="REFERENCES" sql_sequenz_name="">
-      <position h="-1" w="-1" x="725" y="55"/>
+      <position h="-1" w="-1" x="964" y="166"/>
     </relation>
     <relation gen_position="0" id="-1079295746" makeTable="true"
       name="Versions of" pname="Versions of" sname="VERSIONS OF" sql_sequenz_name="">
-      <position h="-1" w="-1" x="775" y="158"/>
+      <position h="-1" w="-1" x="1014" y="269"/>
     </relation>
     <relation gen_position="0" id="19164086" makeTable="true"
       name="Commits" pname="Commits" sname="COMMITS" sql_sequenz_name="">
-      <position h="-1" w="-1" x="676" y="167"/>
+      <position h="-1" w="-1" x="915" y="278"/>
+    </relation>
+    <relation gen_position="0" id="-854381439" makeTable="true"
+      name="contains" pname="contains" sname="CONTAINS" sql_sequenz_name="">
+      <position h="-1" w="-1" x="346" y="169"/>
+    </relation>
+    <entity gen_position="0" id="-1593555327" name="Database"
+      pname="Database" sname="DATABASE" sql_sequenz_name="">
+      <position h="-1" w="-1" x="466" y="181"/>
+    </entity>
+    <entity gen_position="0" id="1134775244" name="Jobspec"
+      pname="Jobspec" sname="JOBSPEC" sql_sequenz_name="">
+      <position h="-1" w="-1" x="674" y="114"/>
+    </entity>
+    <entity gen_position="0" id="-845952574" name="Job" pname="Job"
+      sname="JOB" sql_sequenz_name="">
+      <position h="-1" w="-1" x="680" y="60"/>
+    </entity>
+    <relation gen_position="0" id="1286181077" makeTable="true"
+      name="stores" pname="stores" sname="STORES" sql_sequenz_name="">
+      <position h="-1" w="-1" x="582" y="52"/>
+    </relation>
+    <relation gen_position="0" id="1940410098" makeTable="true"
+      name="stores" pname="stores" sname="STORES" sql_sequenz_name="">
+      <position h="-1" w="-1" x="579" y="105"/>
     </relation>
   </elements>
   <connections>
     <connection cascades="" from="-1125849101" multiplicity="1" to="840087222"/>
     <connection cascades="" from="-1125849101" multiplicity="1" to="-102552949"/>
-    <connection cascades="" from="1044568216" multiplicity="1" to="-102552949"/>
+    <connection cascades="" from="1044568216" multiplicity="1" to="-1593555327"/>
     <connection cascades="" from="1044568216" multiplicity="0" to="-583515193"/>
     <connection cascades="" from="-2099640748" multiplicity="1" to="-583515193"/>
     <connection cascades="" from="-2099640748" multiplicity="0" to="1194655972"/>
@@ -153,5 +177,11 @@
     <connection cascades="" from="-1079295746" multiplicity="0" to="-1722268499"/>
     <connection cascades="" from="19164086" multiplicity="1" to="1194655972"/>
     <connection cascades="" from="19164086" multiplicity="0" to="-1722268499"/>
+    <connection cascades="" from="-854381439" multiplicity="1" to="-102552949"/>
+    <connection cascades="" from="-854381439" multiplicity="1" to="-1593555327"/>
+    <connection cascades="" from="1286181077" multiplicity="1" to="-1593555327"/>
+    <connection cascades="" from="1286181077" multiplicity="0" to="-845952574"/>
+    <connection cascades="" from="1940410098" multiplicity="1" to="-1593555327"/>
+    <connection cascades="" from="1940410098" multiplicity="1" to="1134775244"/>
   </connections>
 </diagram>
