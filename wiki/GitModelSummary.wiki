@@ -11,6 +11,7 @@ http://pysync.googlecode.com/files/git_ER_diagram2.png
 A tree is used to represent a directory in Git's filesystem model. 
 
 *Where do submodules fit in?*
+A submodule is a foreign repository embedded within the contents of a git repository. It is represented by a special tree object called a 'gitlink'. This is noted in a record in .gitmodules within the root of the repository. The .gitmodules record assigns the logical name and URL associated with the submodule. (source: http://www.kernel.org/pub/software/scm/git/docs/git-submodule.html)
 
 *Why can't Git represent subdirectories?*
 As a consequence of Git's design, the atomic unit of checking out is the repo. Unlike SVN, there is no .git directory in every subdirectory of the root directory of the repo. There is a single .git directory at the root responsible for storing the repo/versioning information.
