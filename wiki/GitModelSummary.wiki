@@ -5,6 +5,9 @@ The following is an ER diagram outlining the Git model.
 
 http://pysync.googlecode.com/files/git_ER_diagram2.png
 
+===Some things of notice===
+Git uses universal public identifiers based off of a SHA1 hash off of file contents. This hash becomes the name of the blob used to store the file contents. It is used by trees to map the human-made filename (which is of course the same across multiple versions) to a specific version of that given file (the blob representing the file contents of that version). Trees store no version information; commit objects contain the state of the tree they point to (along with appropriate meta-data). Therefore a series of commit objects represents a repository's version history.
+
 
 ===Explanation of ER Diagram===
 *What's a tree?*
