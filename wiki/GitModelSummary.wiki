@@ -3,7 +3,7 @@ Git is a distributed VCS. Centralized VCS is a special case of distributed VCS, 
 
 The following is an ER diagram outlining the Git model.
 
-http://pysync.googlecode.com/files/git_ER_diagram.png
+http://pysync.googlecode.com/files/git_ER_diagram2.png
 
 
 ===Explanation of ER Diagram===
