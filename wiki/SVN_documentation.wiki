@@ -23,3 +23,4 @@ http://pysync.googlecode.com/files/svn_ER1.jpg
 <br />
 <b> and its relationships: </b>
 <br />
+http://pysync.googlecode.com/files/svn_er_diagram2.jpg
