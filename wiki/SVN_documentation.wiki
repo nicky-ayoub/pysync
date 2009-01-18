@@ -8,6 +8,10 @@ SVN is a centralized VCS, meaning that only one master copy of the software is u
   </li>
   <li> The Subversion file system can be described as a three dimensional filesystem. Since most representations of a directory tree (e.g., tree view) are two dimensional, the added dimension is that of revisions. Each revision in a Subversion file system has its own root, which is used to access contents at that revision. Files are stored as links to the most recent change; thus a Subversion repository is quite compact.
   </li>
+  <li> The <i>svn:externals</i> property is that once it is set on a versioned directory, everyone who checks out a working copy with that directory also gets the benefit of the externals definition.
+  </li>
+  <li> Subversion provides interfaces for adding, modifying, and removing versioned metadata on each of your versioned directories and files. 
+  </li>
 </ul>
 
 
@@ -19,4 +23,3 @@ http://pysync.googlecode.com/files/svn_ER1.jpg
 <br />
 <b> and its relationships: </b>
 <br />
-http://pysync.googlecode.com/files/svn_ER2.jpg
