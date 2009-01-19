@@ -8,6 +8,7 @@ Perforce is a centralized version control system. Of particular note:
  * Branches are directories but p4 keeps track of the origins of files
  * A depot is just a container for a numbered series of changesets. 
  * A revision of a file is uniquely identified by a domain, depot, path and any of {changeset id, date, file revision #}
+ * A job is a versioned blob of data. A jobspec defines the format of that blob. Jobs are meant to allow external tools such as bug trackers store their information in Perforce.
 
 = Diagram =
 http://pysync.googlecode.com/svn/wiki/media/perforce.png
