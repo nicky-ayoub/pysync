@@ -1,0 +1,31 @@
+#summary Initial Marking Scheme
+#labels markingscheme
+
+= Marking Scheme for PySync =
+
+_*### Documentation - 40% ###*_
+ * ER diagrams - 2%
+ * Document: Showing similarities and differences between systems - 5%
+ * Document: Client API mappings - 5%
+ * Code documentation - 15%
+ * Design documents - 13%
+
+_*### Product - 40% ###*_
+ * Schedule & Estimates - 5%
+ * Code (works, clean) - 20%
+ * Tests (good coverage, minimal coverage, perform, clear, documented) - 15%
+
+_*### Meta  - 20% ### *_
+ * Marking scheme ( x 2) - 2%
+ * Progress and progress updates (Working in public, keeping 'client' informed and happy) - 15%
+ * Final report - 3%
+
+<br /><br /><br />
+
+
+Side note - here is something Greg posted on pysync discuss:
+_If you folks want your marking scheme to say "five iterations, each about
+two weeks long, with the goal for each set at the end of the previous one,
+and each one worth 15% of the course grade" (with the remaining 25% for
+the final deliverable, documentation, professionalism, etc.), I'm happy
+with that._
