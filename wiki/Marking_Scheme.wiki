@@ -16,8 +16,8 @@ _* ### 5 iterations - 70% ### *_
 
 
 _* ### Final Deliverable - 25% ### *_
- * Progress and progress updates (Working in public, keeping 'client' informed and happy) - 15%
- * Design documents - 13%
+ * Progress and progress updates (Working in public, keeping 'client' informed and happy) - 13%
+ * Design documents - 10%
  * Final report - 2%
 
 <br />
