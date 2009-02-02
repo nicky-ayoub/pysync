@@ -31,3 +31,9 @@ The primary stumbling block for myself was in understanding the pragmatic aspect
 To support git invisibly alongside centralized VCS' like SVN, it seems to me (please discuss) that having our library handle git by emulating a SVN design is the easiest approach. We can design our library to revolve around a centralized repo (which ties in well with the concept of Basie as a project portal; a place where developers go to as opposed to something everyone has an independent copy of). 
 
 I believe that foregoing the bells and whistles that supporting true distributed VCS provides would lead to far too many headaches. Furthermore, I believe that simply getting our library working is our first priority. However, I also realize that building ourselves into a corner in the design phase is a potential problem. I have heard that there are extensions to svn to enable it to behave in a distributed manner but I'm unsure as to what extent perforce can do the same. 
+
+
+===Git in PyVCAL (formerly PySync)===
+Since I am a lazy bastard, the best way I've found to get my meaty hooks into Git from Python is to use someone else's meaty hooks; [http://blog.michaeltrier.com/2008/5/8/gitpython GitPython]. GitPython is an interface to Git from Python. It provides, from what I can tell, all the basic CRUD needed to interact with Git repositories. Since we aren't worried about advanced Git features, these basics are all we need for PyVCAL at the moment. It also provides a way to issue direct command-line queries to the Git binary for us to implement any advanced or custom features that aren't necessarily covered by GitPython's existing API. 
+
+This means that our Git-specific code simply has to call the appropriate GitPython's functions and convert the returning values to whatever abstract VCS-independent form we choose for PyVCAL.
