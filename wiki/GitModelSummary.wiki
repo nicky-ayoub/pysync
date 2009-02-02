@@ -37,3 +37,5 @@ I believe that foregoing the bells and whistles that supporting true distributed
 Since I am a lazy bastard, the best way I've found to get my meaty hooks into Git from Python is to use someone else's meaty hooks; [http://blog.michaeltrier.com/2008/5/8/gitpython GitPython]. GitPython is an interface to Git from Python. It provides, from what I can tell, all the basic CRUD needed to interact with Git repositories. Since we aren't worried about advanced Git features, these basics are all we need for PyVCAL at the moment. It also provides a way to issue direct command-line queries to the Git binary for us to implement any advanced or custom features that aren't necessarily covered by GitPython's existing API. 
 
 This means that our Git-specific code simply has to call the appropriate GitPython's functions and convert the returning values to whatever abstract VCS-independent form we choose for PyVCAL.
+
+API (pg15-22): http://pysync.googlecode.com/files/GitPython.pdf
