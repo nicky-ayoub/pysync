@@ -17,14 +17,15 @@
 ===get_diff(x, y, paths)===
     * returns the diff from revision a to revision b, optionally restricted to given file(s) on paths (not sure how svn/perforce may deal with this; can we generate diffs of individual files?)
 
-==Revision== 
+==Revision==
+
 (analogous to a Commit in git)
 
 
 ==Tree== 
+
 (analogous to a directory in SVN)
 ===get_path===
     * returns path from Repo
 ===get_contents(recursive?)===
     * returns contents of tree (ie. contents of directory), optionally recursive
-
