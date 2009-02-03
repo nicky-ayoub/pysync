@@ -45,3 +45,7 @@ A coherent set of data that evolves together
     * returns any properties of the directory
 
 =User=
+
+=Diff=
+
+represents the set of changes needed to transform one revision into another.
