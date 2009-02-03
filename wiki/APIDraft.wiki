@@ -8,15 +8,13 @@
 ==get_properties==
     * returns (what?) properties of the file
     
-=Repo=
+=Repository=
 ==get_uri==
     * Returns uri of repository
 ==get_branches==
     * Gets the branches available in this repository
 ==get_rev(rev_id)==
     * returns Revision object corresponding to rev_id
-==get_diff(x, y, paths)==
-    * returns the diff from revision a to revision b, optionally restricted to given file(s) on paths (not sure how svn/perforce may deal with this; can we generate diffs of individual files?)
 
 =Branch=
 A coherent set of data that evolves together
@@ -28,9 +26,13 @@ A coherent set of data that evolves together
 
 =Revision=
 
-(analogous to a Commit in git)
+(analogous to a Commit in git---represents a complete state of a branch)
 ==get_predecessors==
     * returns the revisions that flow into this revision
+
+==@classmethod get_diff(a, b, paths)==
+    * returns the diff from revision a to revision b, optionally restricted to given file(s) on paths (not sure how svn/perforce may deal with this; can we generate diffs of individual files?)
+
 
 =Tree= 
 
