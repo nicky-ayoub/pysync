@@ -2,8 +2,11 @@
 #labels Phase-Design,api,draft
 
 =File=
-==data===
+==data==
     * returns binary blob of file contents
+
+==get_properties==
+    * returns (what?) properties of the file
     
 =Repo=
 ==get_dir==
