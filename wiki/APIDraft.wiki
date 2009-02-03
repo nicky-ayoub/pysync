@@ -41,5 +41,7 @@ A coherent set of data that evolves together
     * returns path from Repo
 ==get_contents(recursive?)==
     * returns contents of tree (ie. contents of directory), optionally recursive
+==get_properties==
+    * returns any properties of the directory
 
 =User=
