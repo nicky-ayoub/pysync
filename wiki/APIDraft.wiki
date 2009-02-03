@@ -27,3 +27,5 @@
     * returns path from Repo
 ==get_contents(recursive?)==
     * returns contents of tree (ie. contents of directory), optionally recursive
+
+=User=
