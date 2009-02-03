@@ -1,31 +1,29 @@
 #summary Really really rough API draft
 #labels Phase-Design,api
 
-=API draft:=
-
-==File==
-===data===
+=File=
+==data===
     * returns binary blob of file contents
     
-==Repo==
-===get_dir===
+=Repo=
+==get_dir==
     * Returns directory of repository
-===get_head===
+==get_head==
     * returns object representing latest Revision (referred to as the "head")
-===get_rev(rev_id)===
+==get_rev(rev_id)==
     * returns Revision object corresponding to rev_id
-===get_diff(x, y, paths)===
+==get_diff(x, y, paths)==
     * returns the diff from revision a to revision b, optionally restricted to given file(s) on paths (not sure how svn/perforce may deal with this; can we generate diffs of individual files?)
 
-==Revision==
+=Revision=
 
 (analogous to a Commit in git)
 
 
-==Tree== 
+=Tree= 
 
 (analogous to a directory in SVN)
-===get_path===
+==get_path==
     * returns path from Repo
-===get_contents(recursive?)===
+==get_contents(recursive?)==
     * returns contents of tree (ie. contents of directory), optionally recursive
