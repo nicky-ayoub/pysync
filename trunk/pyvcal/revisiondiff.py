@@ -4,7 +4,15 @@ class RevisionDiff(object):
         super(RevisionDiff, self).__init__()
 
 class NullRevisionDiff(RevisionDiff):
+    """A fake diff"""
+    def __init__(self, arg):
+        super(NullRevisionDiff, self).__init__()
+        self.arg = arg
+        
+
+
+class MultipleParentNullRevisionDiff(NullRevisionDiff):
     """A fake diff for when a revision doesn't have a unique parent."""
     def __init__(self):
-        super(NullRevisionDiff, self).__init__()
+        super(MultipleParentNullRevisionDiff, self).__init__()
 
