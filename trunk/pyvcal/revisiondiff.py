@@ -5,9 +5,8 @@ class RevisionDiff(object):
 
 class NullRevisionDiff(RevisionDiff):
     """A fake diff"""
-    def __init__(self, arg):
+    def __init__(self):
         super(NullRevisionDiff, self).__init__()
-        self.arg = arg
         
 
 
