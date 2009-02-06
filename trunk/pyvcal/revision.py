@@ -11,7 +11,14 @@ class Revision(object):
         """Get the RevisionProperties for this revision."""
         raise NotImplementedError
         
+    def get_diff_with_parent(paths=None):
+        """Return the RevisionDiff from this revision to its parent, optionally restricted to the given file(s) on paths
+        
+        If there is more than one parent, this method may return a fake RevisionDiff with no content to represent a merge.
+        """
+        raise NotImplementedError
+        
     @classmethod
     def get_diff(cls, a, b, paths=None):
-        """Return the diff from Revision a to Revision b, optionally restricted to the given file(s) on paths"""
+        """Return the RevisionDiff from Revision a to Revision b, optionally restricted to the given file(s) on paths"""
         raise NotImplementedError 
