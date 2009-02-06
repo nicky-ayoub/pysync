@@ -7,6 +7,10 @@ class Revision(object):
         """Return a list of Revisions that flow into this Revision"""
         raise NotImplementedError 
         
+    def get_properties(self):
+        """Get the RevisionProperties for this revision."""
+        raise NotImplementedError
+        
     @classmethod
     def get_diff(cls, a, b, paths=None):
         """Return the diff from Revision a to Revision b, optionally restricted to the given file(s) on paths"""

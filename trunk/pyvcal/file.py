@@ -8,7 +8,4 @@ class File(Resource):
     def data(self):
         """Return a binary blob of the file contents"""
         raise NotImplementedError 
-    def get_properties(self):
-        """Return the properties of a file"""
-        raise NotImplementedError 
-        
+
