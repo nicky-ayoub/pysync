@@ -1,4 +1,6 @@
-class File(object):
+from pyvcal.resource import Resource
+
+class File(Resource):
     """A snapshot of a versioned file."""
     def __init__(self):
         super(File, self).__init__()

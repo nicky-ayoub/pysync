@@ -1,4 +1,6 @@
-class Tree(object):
+from pyvcal.resource import Resource
+
+class Tree(Resource):
     """A versioned container of Files"""
     def __init__(self):
         super(Tree, self).__init__()
