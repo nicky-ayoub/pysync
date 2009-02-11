@@ -18,3 +18,8 @@ class RevisionProperties(object):
     def get_time(self):
         """Return the (TODO dataformat) of the revision"""
         pass
+        
+    revision = property(get_revision)
+    commit_message = property(get_commit_message)
+    committer = property(get_committer)
+    time = property(get_time)

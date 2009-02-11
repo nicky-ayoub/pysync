@@ -12,3 +12,6 @@ class Tree(Resource):
     def get_contents(self, recursive=True):
         """Return the contents of a tree as a list of Paths."""
         raise NotImplementedError 
+        
+    path = property(get_path)
+    contents = property(get_contents)

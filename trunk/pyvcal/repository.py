@@ -14,3 +14,7 @@ class Repository(object):
     def get_revision(self, revision_id):
         """Return the Revision object corresponding to revision_id"""
         raise NotImplementedError 
+    
+    uri = property(get_uri)
+    branches = property(get_branches)
+    revision = property(get_revision)

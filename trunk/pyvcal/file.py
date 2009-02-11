@@ -5,7 +5,8 @@ class File(Resource):
     def __init__(self):
         super(File, self).__init__()
     
-    def data(self):
+    def get_data(self):
         """Return a binary blob of the file contents"""
         raise NotImplementedError 
 
+    data = property(get_data)

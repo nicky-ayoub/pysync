@@ -11,3 +11,5 @@ class Branch(object):
         """Return the user-defined name of the branch"""
         raise NotImplementedError 
         
+    head = property(get_head)
+    name = property(get_name)

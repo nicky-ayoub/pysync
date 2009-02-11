@@ -10,4 +10,6 @@ class Resource(object):
     def get_properties(self):
         """Return the properties of a resource"""
         raise NotImplementedError 
-        
+    
+    latest_revision = property(get_latest_revision)
+    properties = property(get_properties)

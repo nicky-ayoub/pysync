@@ -19,6 +19,10 @@ class Revision(object):
         raise NotImplementedError
         
     @classmethod
-    def get_diff(cls, src, dst, paths=None):
+    def diff(cls, src, dst, paths=None):
         """Return the RevisionDiff from Revision src to Revision dst, optionally restricted to the given file(s) on paths"""
         raise NotImplementedError 
+
+    predecessors = property(get_predecessors)
+    properties = property(get_properties)
+    diff_with_parent = property(get_diff_with_parent)
