@@ -26,6 +26,7 @@ setup(
    'Programming Language :: Python',
    'Topic :: Software Development :: Libraries',
    'Topic :: Software Development :: Version Control'
-   ]
+   ],
+   test_suite="pyvcal.tests.test_all"
    #	    ,platforms=""""""
 )
