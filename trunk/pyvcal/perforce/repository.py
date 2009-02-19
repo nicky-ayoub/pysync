@@ -1,5 +1,10 @@
 from __future__ import with_statement
+
+from .revision import Revision
+
 import P4
+
+
 
 class Repository(object):    
     def __init__(self, user=None, password=None, host=None, port=str(1666), client=None, cwd=None):
@@ -27,7 +32,14 @@ class Repository(object):
         
     def get_revisions(self):
         """Return the Revision objects available in this repository"""
-        raise NotImplementedError 
+        with self._init_client() as p4c:
+            raw_changes = p4c.run("changes")
+            raw_revisions = [Revision(c) for c in raw_changes]
+            result = {}
+            for r in raw_revisions:
+                result[r.properties.revision_id] = r   
+            return result
+            
 
     uri = property(get_uri)
     branches = property(get_branches)
