@@ -1,20 +1,22 @@
-from pyvcal.subversion import subversion_branch as ibranch
+from pyvcal.subversion import branch as ibranch
 import os
 from datetime import datetime
 from subvertpy import repos, ra, NODE_NONE, NODE_DIR, NODE_FILE
 
-class Repository():
+class Repository(object):
 
 	def __init__(self, path=None):
 		""" Constructor for the SVN Repository object """
+		super(Repository, self).__init__()
+
 		self.path = path
-		#super(Repository, self).__init__()
 
 	def get_uri(self):
         	""" Return the URI of the repository """
+		self._connect(self.path)
 		return self.path
 	
-	def connect(self, path):
+	def _connect(self, path):
 		""" Given a path, then connect to that path """
 		self.path = path
 		self.ra_api = ra.RemoteAccess(path)
