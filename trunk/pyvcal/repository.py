@@ -5,7 +5,7 @@ class Repository(object):
     
     def get_uri(self):
         """Return the URI of the repository"""
-        raise NotImplementedError 
+        raise NotImplementedError
         
     def get_branches(self):
         """Return the branches available in the repository"""
