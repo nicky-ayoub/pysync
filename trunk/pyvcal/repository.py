@@ -11,10 +11,10 @@ class Repository(object):
         """Return the branches available in the repository"""
         raise NotImplementedError 
         
-    def get_revision(self, revision_id):
-        """Return the Revision object corresponding to revision_id"""
+    def get_revisions(self):
+        """Return the Revision objects available in this repository"""
         raise NotImplementedError 
     
     uri = property(get_uri)
     branches = property(get_branches)
-    revision = property(get_revision)
+    revisions = property(get_revisions)
