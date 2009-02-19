@@ -1,25 +1,26 @@
 from git import *
 
-class GitRepository(object):
+class Repository(object):
     def __init__(self):
+        super(Repository, self).__init__()
         
-    def connect(uri):
+    def connect(self, uri):
         """Initialize a connection to the repository; uri is a string."""
         self.repo = git.Repo(uri)
         self.uri = uri
-        
-
 
     def get_uri(self):
         return self.uri
         
     def get_branches(self):
         # stolen blatantly from pyvcs/git_backend.py. also, totally broken. lolz
-        return dict((b.name, Branch(b, self)) for b in self.repo.branches)
+        # return dict((b.name, Branch(b, self)) for b in self.repo.branches)
+        raise NotImplementedError
     
     def get_revisions(self, revision_id=None):
-        """Return a list of revisions"""
-        revision_dict = dict(() for r in self.repo.heads[0])
+        """Return a dictionary of all revisions chronologically from `master`"""
+        revision_dict = dict((r.id, _log(r)) for r in self.repo.commits)
+        return revision_dict
         # if revision_id is None
         #     # default behavior is to return the HEAD
         #     # gitrev = self.repo.commits()[0]
@@ -28,6 +29,7 @@ class GitRepository(object):
         # elsif
         #     gitrev = self.repo.commit(revision_id) # git.Commit object
         #     return _log(gitrev) # convert git.Commit to pyvcal.GitRevision for now
+
     
     def _log(gitrev):
         """
