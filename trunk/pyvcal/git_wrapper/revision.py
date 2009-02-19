@@ -1,6 +1,6 @@
-class GitRevision(Revision):
+class Revision(Revision):
     def __init__(self):
-        super(GitRevision, self).__init__()
+        super(Revision, self).__init__()
         
 
     
@@ -11,31 +11,3 @@ class GitRevision(Revision):
         self.id = id
         
     id = property(_get_id, _set_id) 
-    # """The complete state of a branch at a given time"""
-    # def __init__(self):
-    #     super(Revision, self).__init__()
-    # 
-    # def get_predecessors(self):
-    #     """Return a list of Revisions that flow into this Revision"""
-    #     raise NotImplementedError 
-    #     
-    # def get_properties(self):
-    #     """Get the RevisionProperties for this revision."""
-    #     raise NotImplementedError
-    #     
-    # def get_diff_with_parent(self, paths=None):
-    #     """Return the RevisionDiff from this revision to its parent, optionally restricted to the given file(s) on paths
-    #     
-    #     If there is more than one parent, this method may return a fake RevisionDiff with no content to represent a merge.
-    #     """
-    #     raise NotImplementedError
-    #     
-    # @classmethod
-    # def diff(cls, src, dst, paths=None):
-    #     """Return the RevisionDiff from Revision src to Revision dst, optionally restricted to the given file(s) on paths"""
-    #     raise NotImplementedError 
-    # 
-    # predecessors = property(get_predecessors)
-    # properties = property(get_properties)
-    # diff_with_parent = property(get_diff_with_parent)
-

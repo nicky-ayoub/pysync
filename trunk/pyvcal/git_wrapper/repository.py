@@ -1,4 +1,5 @@
 from git import *
+# from revision import Revision
 
 class Repository(object):
     def __init__(self):
@@ -6,11 +7,11 @@ class Repository(object):
         
     def connect(self, uri):
         """Initialize a connection to the repository; uri is a string."""
-        self.repo = git.Repo(uri)
-        self.uri = uri
+        self.repo = Repo(uri)
+        self.git_uri = uri
 
     def get_uri(self):
-        return self.uri
+        return self.git_uri
         
     def get_branches(self):
         # stolen blatantly from pyvcs/git_backend.py. also, totally broken. lolz
@@ -19,8 +20,10 @@ class Repository(object):
     
     def get_revisions(self, revision_id=None):
         """Return a dictionary of all revisions chronologically from `master`"""
-        revision_dict = dict((r.id, _log(r)) for r in self.repo.commits)
+        revision_dict = dict((r.id, self._log(r)) for r in self.repo.commits())
+        self.repo.commits()
         return revision_dict
+        
         # if revision_id is None
         #     # default behavior is to return the HEAD
         #     # gitrev = self.repo.commits()[0]
@@ -31,15 +34,19 @@ class Repository(object):
         #     return _log(gitrev) # convert git.Commit to pyvcal.GitRevision for now
 
     
-    def _log(gitrev):
+    def _log(self, gitrev):
         """
         Takes a git.Commit object returns a corresponding GitRevision obj
         This is called _log since it's analogous to the SVN equivalent in
         /pyvcall/pyvcal/subversion
         """
-        rev = GitRevision()
-        rev.id = gitrev.id() # return the abbreviated id, not the whole 40-char string
-        return rev
+        return None
+        # rev = Revision()
+        # rev.id = gitrev.id() # return the abbreviated id, not the whole 40-char string
+        # return rev
+        
+    # def _foobar(revid):
+        
         
 
 # class Repository(object):
