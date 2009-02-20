@@ -3,11 +3,14 @@ from git import *
 from .revision import Revision
 
 class Repository(object):
-    def __init__(self, **kwargs):
+    def __init__(self, path=None): # replace kwargs with whatever you need to init
         super(Repository, self).__init__()
+        self._path = path
+        self._repo = Repo(self._path)
     
     def get_uri(self):
-        return self.git_uri
+        """Return path of repository(canonical), not working copy repo"""
+        # return self._path
         
     def get_branches(self):
         raise NotImplementedError
@@ -27,7 +30,7 @@ class Repository(object):
         # elsif
         #     gitrev = self.repo.commit(revision_id) # git.Commit object
         #     return _log(gitrev) # convert git.Commit to pyvcal.GitRevision for now
-    
+
     @classmethod
     def create(cls,**kwargs):
         """Create a new Repository and return it."""
@@ -35,8 +38,10 @@ class Repository(object):
 
     def _connect(self, uri):
         """Initialize a connection to the repository; uri is a string."""
-        self.repo = Repo(uri)
-        self.git_uri = uri
+        # DEPRECATED by __init__? Keeping it in here for now
+        # TODO: decide if this should be removed
+        self._repo = Repo(uri)
+        self._path = uri
         
     def _log(self, gitrev):
         """
