@@ -2,9 +2,10 @@ from subvertpy import repos, ra, NODE_DIR, NODE_FILE
 
 class Path(object):
     """ A path to a versioned resource """
-    def __init__(self, revision=None, branch_path=None, node_path=None):
+    def __init__(self, ra_api=None, revision=None, branch_path=None, node_path=None):
         super(Path, self).__init__()
 
+        self._ra_api = ra_api
         self._branch_path = branch_path
         self._node_path = node_path
         self._revnum = revision

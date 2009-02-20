@@ -1,4 +1,6 @@
 from resource import Resource
+from path import Path
+
 from cStringIO import StringIO
 import mimetypes
 import os
@@ -7,18 +9,19 @@ class Tree(Resource):
     """ A versioned container of Files - that is, it represents a 
     directory or tree in the Repository """
 
+    def __init__(self):
+        #super(Tree, self).__init__()
+        self._path = Path(self._revnum, self._branch_path, self._path)
+
     def get_path(self):
         """ Return the path to this tree in its container Repository """
-        raise NotImplementedError 
-
-
+        return self._path
 
     def get_contents(self, recursive=True):
         return get_data(recursive)
 
     def get_data(self, recursive=True):
         """ Return the contents of a tree as a list of Paths """
-        ##  raise NotImplementedError 
         self.dir_paths = []
 
         if self._path == '':
@@ -34,13 +37,13 @@ class Tree(Resource):
                                           item)
 
             branch_node_path = os.path.join(self._path, item)
+
             # Actually appending the path to the list 
-            # TODO: add a Path object not a single path
-            self.dir_paths.append(branch_node_path)
+            self.dir_paths.append(self._path.get_resource(self._revnum,
+                                                          self._branch_path,
+                                                          self._path))
 
         return self.dir_paths
-
-
 
     def _file_list(path, ra_api, revnum=None):
         """ Return a list of strings representing the contents of a given path """
