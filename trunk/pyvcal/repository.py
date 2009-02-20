@@ -1,6 +1,6 @@
 class Repository(object):
     """A container for codelines"""
-    def __init__(self, identifier):
+    def __init__(self):
         super(Repository, self).__init__()
     
     def get_uri(self):
@@ -18,3 +18,8 @@ class Repository(object):
     uri = property(get_uri)
     branches = property(get_branches)
     revisions = property(get_revisions)
+    
+    @classmethod
+    def create(cls, *args,**kwargs):
+        """Create a new Repository and return it."""
+        raise NotImplementedError

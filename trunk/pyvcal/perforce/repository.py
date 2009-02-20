@@ -45,6 +45,11 @@ class Repository(object):
     branches = property(get_branches)
     revisions = property(get_revisions)
 
+    @classmethod
+    def create(cls, *args,**kwargs):
+        """Create a new Repository and return it."""
+        raise NotImplementedError
+
 class P4Client(object):
     """
     with P4Client(user, password, host, port , client, cwd) as p4c:

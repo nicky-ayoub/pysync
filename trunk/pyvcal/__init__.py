@@ -14,17 +14,15 @@ Perforce arguments:
 
 """
 
-def get_api(vcs_id, **kwargs):
+def get_api(system):
     try:
         vcs = {
             'git' : git,
             'svn' : subversion,
             'perforce' : perforce
-        }[vcs_id]
+        }[system]
     except KeyError, e:
         raise ValueError(USAGE_STRING)
 
-    vcs.SETTINGS = kwargs
-    
     return vcs
 
