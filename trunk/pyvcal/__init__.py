@@ -14,16 +14,13 @@ Perforce arguments:
 
 """
 
-def get_api(**kwargs):
-    if not 'vcs' in kwargs:
-        raise ValueError(USAGE_STRING)
-    
+def get_api(vcs_id, **kwargs):
     try:
         vcs = {
             'git' : git,
             'svn' : subversion,
             'perforce' : perforce
-        }[kwargs['vcs']]
+        }[vcs_id]
     except KeyError, e:
         raise ValueError(USAGE_STRING)
 
