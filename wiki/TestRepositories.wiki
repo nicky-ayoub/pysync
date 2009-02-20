@@ -1,0 +1,66 @@
+#summary Some repository designs to test against
+#labels Phase-Design
+
+= Introduction =
+
+We we want some common version control workflows and implement them in each supported version control system for testing.
+
+We'll also need a couple repositories for system-specific tests.
+
+= Details =
+
+=== Test 1 ===
+  # Empty Repository
+  # Set a property on root folder
+
+=== Test 2 ===
+  # Create empty file "README.txt"
+  # Add "Hello, world" in UTF-8 to README.txt
+  # Rename README.txt to README
+  # Delete README
+
+=== Test 3 ===
+  # Create directory 'dir/' and put empty file 'file' in it
+
+=== Test 4 ===
+  # Add a valid .png file (with and without extension) and other difficult-to-recognize binary blob file in root folder
+
+=== Test 5 === 
+  # Create a file 'fruit.txt' with contents 
+{{{
+apple
+banana
+cherry
+}}}
+  # Create branch with contents
+{{{
+apple
+banana
+cherry
+date
+}}}
+  # In trunk, modify to
+{{{
+apples
+bananas
+cherries
+}}}
+  # Merge branch into trunk
+
+=== Test 6 ===
+  # Create empty file 'file.txt'
+  # Create branch with additional file 'new.txt'
+  # In trunk, modify 'file.txt' to add text "All your rebase"
+  # In branch, pull in the trunk change
+  # In branch, modify 'file.txt' to append text "are belong to us"
+  # Merge branch into trunk
+
+== Subversion only ==
+
+=== Test SVN1 ===
+  # Repository with branches/, tags/, trunk/,
+
+=== Test SVN2 ===
+  # Repository without branches/, tags/, trunk/
+
+
