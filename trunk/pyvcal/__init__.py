@@ -1,4 +1,4 @@
-import git, perforce, subversion
+import perforce, subversion, git_wrapper as git
 
 USAGE_STRING = """
 Usage: vcs_api = pyvcal.get_api(<arguments>)
@@ -15,18 +15,24 @@ Perforce arguments:
 """
 
 def get_api(**kwargs):
+    vcs = None
+    
     if not 'vcs' in kwargs:
         print "Must specify vcs."
         print USAGE_STRING
-        return
+        return vcs
 
     if kwargs['vcs'] == 'git':
-        return git
+        vcs = git
     elif kwargs['vcs'] == 'svn':
-        return subversion
+        vcs = subversion
     elif kwargs['vcs'] == 'perforce':
-        return perfoce
+        vcs = perfoce
     else:
         print "Invalid vcs type: ", kwargs['vcs']
         print USAGE_STRING
+
+    vcs.SETTINGS = kwargs
+    
+    return vcs
 
