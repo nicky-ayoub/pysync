@@ -3,13 +3,17 @@ class Properties(object):
     def __init__(self):
         super(Properties, self).__init__()
         
+class ResourceProperties(Properties):
+    """Properties of a versioned object"""
+    def __init__(self):
+        super(Properties, self).__init__()
 
-class FileProperties(Properties):
+class FileProperties(ResourceProperties):
     """The properties of a File"""
     def __init__(self):
         super(FileProperties, self).__init__()
 
-class TreeProperties(Properties):
+class TreeProperties(ResourceProperties):
     """The properties of a Tree"""
     def __init__(self):
         super(TreeProperties, self).__init__()
