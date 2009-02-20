@@ -1,24 +1,19 @@
 from git import *
-# from revision import Revision
+
+from .revision import Revision
 
 class Repository(object):
     def __init__(self):
         super(Repository, self).__init__()
-        
-    def connect(self, uri):
-        """Initialize a connection to the repository; uri is a string."""
-        self.repo = Repo(uri)
-        self.git_uri = uri
-
+    
     def get_uri(self):
         return self.git_uri
         
     def get_branches(self):
-        # stolen blatantly from pyvcs/git_backend.py. also, totally broken. lolz
-        # return dict((b.name, Branch(b, self)) for b in self.repo.branches)
         raise NotImplementedError
     
     def get_revisions(self, revision_id=None):
+        raise NotImplementedError
         """Return a dictionary of all revisions chronologically from `master`"""
         revision_dict = dict((r.id, self._log(r)) for r in self.repo.commits())
         self.repo.commits()
@@ -33,7 +28,11 @@ class Repository(object):
         #     gitrev = self.repo.commit(revision_id) # git.Commit object
         #     return _log(gitrev) # convert git.Commit to pyvcal.GitRevision for now
 
-    
+    def _connect(self, uri):
+        """Initialize a connection to the repository; uri is a string."""
+        self.repo = Repo(uri)
+        self.git_uri = uri
+        
     def _log(self, gitrev):
         """
         Takes a git.Commit object returns a corresponding GitRevision obj
@@ -45,27 +44,6 @@ class Repository(object):
         # rev.id = gitrev.id() # return the abbreviated id, not the whole 40-char string
         # return rev
         
-    # def _foobar(revid):
-        
-        
-
-# class Repository(object):
-#     """A container for codelines"""
-#     def __init__(self):
-#         super(Repository, self).__init__()
-#     
-#     def get_uri(self):
-#         """Return the URI of the repository"""
-#         raise NotImplementedError 
-#         
-#     def get_branches(self):
-#         """Return the branches available in the repository"""
-#         raise NotImplementedError 
-#         
-#     def get_revision(self, revision_id):
-#         """Return the Revision object corresponding to revision_id"""
-#         raise NotImplementedError 
-#     
-#     uri = property(get_uri)
-#     branches = property(get_branches)
-#     revision = property(get_revision)
+    uri = property(get_uri)
+    branches = property(get_branches)
+    revisions = property(get_revisions)
