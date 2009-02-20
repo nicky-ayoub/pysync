@@ -11,8 +11,8 @@ class ResourceProperties(Properties):
         super(Properties, self).__init__()
 	
     	self._resource = resource
-	    self._revnum = revnum
-	    self._path = path	
+        self._revnum = revnum
+        self._path = path	
 
     def _get_revision_number(self):
         """ Return the revision number of the Resource to which these properties apply """

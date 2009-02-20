@@ -1,5 +1,5 @@
 from repository import Repository
-from properties import ResourceProperties
+from property import ResourceProperties
 
 class Resource(object):
     """ A versioned object """
@@ -28,6 +28,9 @@ class Resource(object):
 	    # return self._ra_api.rev_proplist(self._revnum)
         return self._resource_proplist
     
+    def _get_ra_api(self):
+        return self._ra_api
+
     def _full_path(self):
         """ Returns the full path of this Resource """
         return str(os.path.join(self._branch_path, _path))
