@@ -1,6 +1,6 @@
 class Repository(object):
     """A container for codelines"""
-    def __init__(self):
+    def __init__(self, identifier):
         super(Repository, self).__init__()
     
     def get_uri(self):
