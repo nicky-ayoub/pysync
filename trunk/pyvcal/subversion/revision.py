@@ -1,12 +1,13 @@
+from revisionproperties import RevisionProperties
 from subvertpy import repos, ra, NODE_NONE, NODE_DIR, NODE_FILE
 
 class Revision(object):
     """ The complete state of a branch at a given time """
 	
-    def __init__(self, rev=None, author=None, log=None, date=None, paths=None, ra_api=None, branch_path=None):
+    def __init__(self, revnum=None, author=None, log=None, date=None, paths=None, ra_api=None, branch_path=None):
 	super(Revision, self).__init__()
 		
-        self.rev = rev
+        self.revnum = revnum
         self.author = author
         self.log = log
         self.date = date
@@ -14,7 +15,7 @@ class Revision(object):
         self.ra_api = ra_api
         self.branch_path = branch_path
 		
-	self._proplist(self, author, log, date)
+	self._proplist = RevisionProperties(self, revnum, author, log, date)
 
     def get_predecessors(self):
         """ Return a list of Revisions that flow into this Revision """

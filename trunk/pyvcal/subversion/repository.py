@@ -1,4 +1,5 @@
-#from pyvcal.subversion import branch as ibranch
+from revision import Revision
+# from branch import Branch
 import os
 from datetime import datetime
 from subvertpy import repos, ra, NODE_NONE, NODE_DIR, NODE_FILE
@@ -21,12 +22,12 @@ class Repository(object):
 		self.path = path
 		self.ra_api = ra.RemoteAccess(self.path)
 
-	def get_revision(self):
+	def get_revisions(self):
 		""" Return a dictionary of Revision objects where the key is the revision_id 
 		and the value is the actual Revision object """
 		self.connect(self.path)
 		rev_id = self.ra_api.get_latest_revnum()
-		self._log(rev=rev_id)
+		return self._log(rev=rev_id)
 	
 	def get_branches(self):
 		""" Return the branches available in the repository """
@@ -76,4 +77,4 @@ class Repository(object):
 
 	uri = property(get_uri)
 	branches = property(get_branches)
-	revisions = property(get_revision)
+	revisions = property(get_revisions)
