@@ -58,7 +58,6 @@ class P4Client(object):
     def __init__(self, user, password, host, port, client, cwd):
         """Initializes a P4 object"""
         self._p4c = P4.P4()
-#        self._p4c.parse_forms()
         
         if user:
             self._p4c.user = user
