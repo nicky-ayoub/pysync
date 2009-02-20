@@ -10,7 +10,8 @@ class Repository(object):
     
     def get_uri(self):
         """Return path of repository(canonical), not working copy repo"""
-        # return self._path
+        return self._path
+        raise NotImplementedError
         
     def get_branches(self):
         raise NotImplementedError
