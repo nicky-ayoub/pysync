@@ -15,22 +15,17 @@ Perforce arguments:
 """
 
 def get_api(**kwargs):
-    vcs = None
-    
     if not 'vcs' in kwargs:
-        print "Must specify vcs."
-        print USAGE_STRING
-        return vcs
-
-    if kwargs['vcs'] == 'git':
-        vcs = git
-    elif kwargs['vcs'] == 'svn':
-        vcs = subversion
-    elif kwargs['vcs'] == 'perforce':
-        vcs = perfoce
-    else:
-        print "Invalid vcs type: ", kwargs['vcs']
-        print USAGE_STRING
+        raise ValueError(USAGE_STRING)
+    
+    try:
+        vcs = {
+            'git' : git,
+            'svn' : subversion,
+            'perforce' : perforce
+        }[kwargs['vcs']]
+    except KeyError, e:
+        raise ValueError(USAGE_STRING)
 
     vcs.SETTINGS = kwargs
     
