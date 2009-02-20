@@ -7,4 +7,4 @@ from revision import Revision
 #from revisiondiff import RevisionDiff
 from revisionproperties import RevisionProperties
 #from tree import Tree
-#from user import User
+from user import User
