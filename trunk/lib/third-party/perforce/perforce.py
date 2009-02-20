@@ -23,6 +23,7 @@ def perforce_c_api_identifier():
     return sys.platform + \
         {
         'i386' : "80x86",
+        'i686' : "6x86",
         }[platform.machine()] + \
         {
         '32bit' : "",
