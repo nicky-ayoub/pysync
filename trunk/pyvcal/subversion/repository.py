@@ -6,11 +6,14 @@ from subvertpy import repos, ra, NODE_NONE, NODE_DIR, NODE_FILE
 
 class Repository(object):
 
-	def __init__(self, path=None):
+	def __init__(self, **kwargs):
 		""" Constructor for the SVN Repository object """
 		super(Repository, self).__init__()
 
-		self.path = path
+		if kwargs['path']
+			self.path = kwargs['path']
+		else:
+			self.path = None
 
 	def get_uri(self):
         	""" Return the URI of the repository """
@@ -45,6 +48,11 @@ class Repository(object):
 				branch_dict[branch] = ibranch(('branches/' + branch), self.ra_api)
 		return branch_dict"""
 		pass
+	
+	@classmethod
+    def create(cls,**kwargs):
+        """Create a new Repository and return it."""
+        raise NotImplementedError
 	
 	""" Helper methods for this class """
 	def _log(self, path='', rev=None):

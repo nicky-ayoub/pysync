@@ -3,7 +3,7 @@ from git import *
 from .revision import Revision
 
 class Repository(object):
-    def __init__(self):
+    def __init__(self, **kwargs):
         super(Repository, self).__init__()
     
     def get_uri(self):
@@ -27,6 +27,11 @@ class Repository(object):
         # elsif
         #     gitrev = self.repo.commit(revision_id) # git.Commit object
         #     return _log(gitrev) # convert git.Commit to pyvcal.GitRevision for now
+    
+    @classmethod
+    def create(cls,**kwargs):
+        """Create a new Repository and return it."""
+        raise NotImplementedError
 
     def _connect(self, uri):
         """Initialize a connection to the repository; uri is a string."""
