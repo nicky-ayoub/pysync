@@ -16,25 +16,7 @@ class Repository(object):
         self._port = port
         self._client = client
         self._cwd = cwd
-    
-#    def __init__(self, **kwargs):
-#        super(Repository, self).__init__()
-#        
-#        for arg in ['user', 'password', 'host', 'client', 'cwd']:
-#            if not arg in kwargs.keys():
-#                kwargs[arg] = None
-#        
-#        if not 'port' in kwargs.keys():
-#            kwargs['port'] = str(1666)
-#        
-#        self._user = kwargs['user']
-#        self._password = kwargs['password']
-#        self._host = kwargs['host']
-#        self._port = kwargs['port']
-#        self._client = kwargs['client']
-#        self._cwd = kwargs['cwd']
-        
-        
+
     def _init_client(self):
         return P4Client(self._user, self._password, self._host, self._port, self._client, self._cwd)
 

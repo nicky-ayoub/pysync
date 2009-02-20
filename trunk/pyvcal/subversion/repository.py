@@ -6,14 +6,11 @@ from subvertpy import repos, ra, NODE_NONE, NODE_DIR, NODE_FILE
 
 class Repository(object):
 
-	def __init__(self, **kwargs):
+	def __init__(self, path=None):
 		""" Constructor for the SVN Repository object """
 		super(Repository, self).__init__()
 
-		if kwargs['path']
-			self.path = kwargs['path']
-		else:
-			self.path = None
+		self.path = path
 
 	def get_uri(self):
         	""" Return the URI of the repository """
