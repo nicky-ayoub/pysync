@@ -1,10 +1,12 @@
+from datetime import datetime
+
 class RevisionProperties(object):
     """Metadata for a revision"""
     def __init__(self, revision, p4dict):
         super(RevisionProperties, self).__init__()
         self._revision = revision
         self._commit_msg = p4dict['desc']
-        self._time = p4dict['time']
+        self._time = datetime.fromtimestamp(float(p4dict['time']))
         self._committer = p4dict['user']
         self._revision_id = p4dict['change']
         
