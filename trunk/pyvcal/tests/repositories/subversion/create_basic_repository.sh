@@ -1,5 +1,7 @@
-mkdir svnrepo01
-cd svnrepo01/
+reponame="svn-basic-repo"
+
+mkdir $reponame
+cd $reponame
 
 # Creating a repository in this location
 svnadmin create . 
@@ -14,7 +16,7 @@ cd repo01/
 svn co file://$svn_path
 
 # Going into the repo dir
-cd svnrepo01/
+cd $reponame
 
 # add initial commit with empty README.txt
 touch README.txt
