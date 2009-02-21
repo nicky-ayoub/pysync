@@ -43,7 +43,7 @@ date
 {{{
 apples
 bananas
-cherries
+cherry
 }}}
   # Merge branch into trunk
 
@@ -62,5 +62,3 @@ cherries
 
 === Test SVN2 ===
   # Repository without branches/, tags/, trunk/
-
-
