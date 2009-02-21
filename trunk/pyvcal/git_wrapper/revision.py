@@ -15,12 +15,7 @@ class Revision(object):
         
     def get_properties(self):
         """Get the RevisionProperties for this revision."""
-        # rev = self._repo.commit(self._rev_id) # git.Commit obj representing _rev_id
-        raise NotImplementedError
-        author = User(self._git_commit.committer.name) # User(string)
-        log = self._git_commit.message # string
-        committed_timedate = self._git_commit.committed_date # python DateTime obj
-        return RevisionProperties(self, self._rev_id, author, log, committed_timedate)
+        return RevisionProperties(self, self._rev_id, self._repo)
         
     def get_diff_with_parent(self, paths=None):
         """Return the RevisionDiff from this revision to its parent, optionally restricted to the given file(s) on paths
@@ -28,7 +23,7 @@ class Revision(object):
         If there is more than one parent, this method may return a fake RevisionDiff with no content to represent a merge.
         """
         # note to self: r1.diff(commit, commit.parents[0])
-        diff = self._repo.diff(self._git_commit, self._git_commit.parents[0])
+        # diff = self._repo.diff(self._git_commit, self._git_commit.parents[0])
         # TODO: implement RevisionDiff to implement this
         raise NotImplementedError
     
