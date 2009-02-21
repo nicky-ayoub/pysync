@@ -1,6 +1,7 @@
 from git import *
 
 from .revision import Revision
+from .branch import Branch
 
 class Repository(object):
     def __init__(self, path=None): # replace kwargs with whatever you need to init
@@ -16,7 +17,9 @@ class Repository(object):
     def get_branches(self):
         """Return the branches available in the repository as a list"""
         # TODO: implement git_wrapper/branch.py to implement this
-        raise NotImplementedError
+        # raise NotImplementedError
+        branch_list = list((Branch(b.name, Revision(b.commit.id, self._repo), self._repo)) for b in self._repo.branches)
+        return branch_list
     
     def get_latest_revision(self, branch_id='master'):
         # Return latest revision obj in the specified branch; default is 'master'
