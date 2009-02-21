@@ -1,4 +1,4 @@
-reponame="svn-merge-branch"
+reponame="svn-basic"
 
 mkdir $reponame
 cd $reponame
@@ -9,8 +9,8 @@ svnadmin create .
 svn_path=`pwd`
 
 cd ../
-mkdir repo05
-cd repo05/
+mkdir repo01
+cd repo01/
 
 # Checking out the repository
 svn co file://$svn_path
@@ -41,5 +41,5 @@ svn delete README
 svn ci -m "Delete README"
 
 
-cd ../ # back out of svnrepo01
+cd ../ # back out of repo01
 
