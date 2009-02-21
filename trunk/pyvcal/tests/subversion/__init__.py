@@ -4,6 +4,7 @@ import os
 import subprocess
 
 import pyvcal
+from ...util import rmrf
 
 
 api = pyvcal.get_api('subversion')
@@ -23,6 +24,7 @@ class BasicRepository(object):
         return api.Repository(path=os.path.join(path, 'svn-basic'))
 
     def teardown(self):
-        pass
+        rmrf(os.path.join(path, 'svn-basic'))
+        rmrf(os.path.join(path, 'repo01'))
 
 test_subversion = TestSuite()

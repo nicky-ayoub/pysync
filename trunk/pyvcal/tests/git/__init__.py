@@ -3,6 +3,7 @@ import os
 import subprocess
 
 import pyvcal
+from ...util import rmrf
 
 api = pyvcal.get_api('git')
 path = os.path.join(os.path.dirname(__file__), '..', 'repositories', 'git')
@@ -20,6 +21,6 @@ class BasicRepository(object):
         return api.Repository(path=os.path.join(path, 'testrepo01'))
 
     def teardown(self):
-        pass
+        rmrf(os.path.join(path, 'testrepo01'))
 
 test_git = TestSuite()

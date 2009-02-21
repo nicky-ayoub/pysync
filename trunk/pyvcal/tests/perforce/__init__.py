@@ -4,6 +4,8 @@ import subprocess
 import signal
 import pyvcal
 
+from ...util import rmrf
+
 api = pyvcal.get_api('perforce')
 
 
@@ -28,6 +30,7 @@ class BasicRepository(object):
 
     def teardown(self):
         os.kill(self.p4d.pid, signal.SIGKILL)
+        rmrf(os.path.join(path, 'basic'))
 
 test_perforce = TestSuite()
 
