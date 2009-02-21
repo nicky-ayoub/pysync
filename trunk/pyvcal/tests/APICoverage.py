@@ -50,5 +50,16 @@ for vcs in vcs_list:
                             if len(inspect.getargspec(members_general[member_general])[0]) != \
                                len(inspect.getargspec(members_vcs[member_general])[0]):
                                 print "Method signature of ", full_vcs, ".", class_name, "::", member_general, " function appears to be wrong."
+                            
+                            args = []
+                            for i in range(len(inspect.getargspec(members_vcs[member_general])[0])):
+                                args.append('narf')
+                            
+                            try:
+                                members_vcs[member_general](*args)
+                            except NotImplementedError:
+                                print "Method ", full_vcs, ".", class_name, "::", member_general, " isn't implemented yet."
+                            except:
+                                pass
             
 
