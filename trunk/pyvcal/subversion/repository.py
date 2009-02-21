@@ -1,5 +1,6 @@
 from revision import Revision
-# from branch import Branch
+from branch import Branch
+
 import os
 from datetime import datetime
 from subvertpy import repos, ra, NODE_NONE, NODE_DIR, NODE_FILE
@@ -32,20 +33,20 @@ class Repository(object):
     def get_branches(self):
         """ Return the branches available in the repository """
         # assume: /trunk, /branches
-        """branch_dict = {}
+        branch_dict = {}
 
         # The first element in the top level info is the list of files
-        file_list = _file_list('', self.ra_api)
-        if 'trunk' in file_list:
+        f_list = self._file_list('', self.ra_api)
+
+        if 'trunk' in f_list:
             branch_dict['trunk'] = Branch('trunk', self.ra_api)
 
-        if 'branches' in file_list:
-            branch_list = _file_list('branches', self.ra_api)
+        if 'branches' in f_list:
+            branch_list = self._file_list('branches', self.ra_api)
             for branch in branch_list:
                 branch_dict[branch] = Branch(('branches/' + branch), self.ra_api)
 
-    	return branch_dict"""
-        pass
+    	return branch_dict
 	
 	""" Helper methods for this class """
     def _log(self, path='', rev=None):
@@ -75,6 +76,13 @@ class Repository(object):
                            revprops=["svn:date", "svn:author", "svn:log"])
 
         return revision_dict
+
+    def _file_list(self, path, ra_api):
+        """ Return a list of strings representing the contents of a given path """
+        revnum = ra_api.get_latest_revnum()
+        path_level_info = ra_api.get_dir(path, revnum)
+
+        return path_level_info[0].keys()
 
     @classmethod
     def create(cls, **kwargs):
