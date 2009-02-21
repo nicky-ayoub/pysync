@@ -25,6 +25,7 @@ api_list = [ ('branch', ['Branch']),
 
 vcs_list = ['git_wrapper', 'perforce', 'subversion']
 
+
 for vcs in vcs_list:
     print "\n-{ ", vcs, " }-"
     for (module_name, classes) in api_list:
@@ -43,25 +44,26 @@ for vcs in vcs_list:
                 members_vcs = vcs_module.__dict__[class_name].__dict__
                 
                 for member_general in members_general.keys():
-                    if inspect.isfunction(members_general[member_general]):
+                    if inspect.isroutine(members_general[member_general]):
                         if not member_general in members_vcs.keys():
                             print "Must implement ", full_vcs, ".", class_name, "::", member_general, " function."
                         else:
-                            args_general = inspect.getargspec(members_general[member_general])[0]
-                            args_vcs = inspect.getargspec(members_vcs[member_general])[0]
-                            for arg in args_general:
-                                if not arg in args_vcs:
-                                    print "Method signature of ", full_vcs, ".", class_name, "::", member_general, " function appears to be wrong: Doesn't have the ", arg, " argument."
+                            if inspect.isfunction(members_general[member_general]):
+                                args_general = inspect.getargspec(members_general[member_general])[0]
+                                args_vcs = inspect.getargspec(members_vcs[member_general])[0]
                             
-                            args = []
-                            for i in range(len(inspect.getargspec(members_vcs[member_general])[0])):
-                                args.append('narf')
-                            
-                            try:
-                                members_vcs[member_general](*args)
-                            except NotImplementedError:
-                                print "Method ", full_vcs, ".", class_name, "::", member_general, " isn't implemented yet."
-                            except:
-                                pass
-            
+                                for arg in args_general:
+                                    if not arg in args_vcs:
+                                        print "Method signature of ", full_vcs, ".", class_name, "::", member_general, " function appears to be wrong: Doesn't have the ", arg, " argument."
+                                
+                                args = []
+                                for i in range(len(inspect.getargspec(members_vcs[member_general])[0])):
+                                    args.append('narf')
+                                
+                                try:
+                                    members_vcs[member_general](*args)
+                                except NotImplementedError:
+                                    print "Method ", full_vcs, ".", class_name, "::", member_general, " isn't implemented yet."
+                                except:
+                                    pass
 
