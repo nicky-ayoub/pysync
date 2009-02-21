@@ -31,16 +31,15 @@ for vcs in vcs_list:
         full_general = 'pyvcal.' + module_name
         full_vcs = 'pyvcal.' + vcs + '.' + module_name
         
-        for class_name in classes:
-            members_general = __import__(full_general, globals(), locals(), classes, -1).__dict__[class_name].__dict__
-            
-            vcs_module = None
-            try:
-                vcs_module = __import__(full_vcs, globals(), locals(), classes, -1)
-            except ImportError:
-                print "Must add ", full_vcs, " module."
-            
-            if vcs_module:
+        vcs_module = None
+        try:
+            vcs_module = __import__(full_vcs, globals(), locals(), classes, -1)
+        except ImportError:
+            print "Must add ", full_vcs, " module."
+        
+        if vcs_module:
+            for class_name in classes:
+                members_general = __import__(full_general, globals(), locals(), classes, -1).__dict__[class_name].__dict__
                 members_vcs = vcs_module.__dict__[class_name].__dict__
                 
                 for member_general in members_general.keys():

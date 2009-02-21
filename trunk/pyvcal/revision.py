@@ -1,7 +1,5 @@
 class Revision(object):
     """The complete state of a branch at a given time"""
-    def __init__(self):
-        super(Revision, self).__init__()
 
     def get_predecessors(self):
         """Return a list of Revisions that flow into this Revision"""

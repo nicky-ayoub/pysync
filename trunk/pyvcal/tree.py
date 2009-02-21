@@ -2,8 +2,6 @@ from pyvcal.resource import Resource
 
 class Tree(Resource):
     """A versioned container of Files"""
-    def __init__(self):
-        super(Tree, self).__init__()
 
     def get_path(self):
         """Return the path to this tree in its container Repository"""

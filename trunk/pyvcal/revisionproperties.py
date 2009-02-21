@@ -1,7 +1,5 @@
 class RevisionProperties(object):
     """Metadata for a revision"""
-    def __init__(self):
-        super(RevisionProperties, self).__init__()
     
     def get_revision(self):
         """Return the revision to which these properties apply."""
