@@ -9,28 +9,33 @@ class Repository(object):
         self._repo = Repo(self._path)
     
     def get_uri(self):
-        """Return path of repository(canonical), not working copy repo"""
+        """Return path of repository (unlike svn or p4c, this is LOCAL)"""
         return self._path
-        raise NotImplementedError
+        # raise NotImplementedError
         
     def get_branches(self):
+        """Return the branches available in the repository as a list"""
+        # TODO: implement git_wrapper/branch.py to implement this
         raise NotImplementedError
     
+    def get_latest_revision(self, branch_id='master'):
+        # Return latest revision obj in the specified branch; default is 'master'
+        """
+        Return latest Revision object in the optional specified branch (string);
+        Default behavior is 'master' branch.
+        """
+        gitrev = self._repo.commits(start=branch_id)[0] # git.Commit at head of specified branch
+        return Revision(gitrev.id, self._repo)
+        # raise NotImplementedError
+    
     def get_revisions(self, revision_id=None):
-        raise NotImplementedError
-        """Return a dictionary of all revisions chronologically from `master`"""
-        revision_dict = dict((r.id, self._log(r)) for r in self.repo.commits())
-        self.repo.commits()
+        """
+        Return a dictionary of last 10 revisions; key is revid (40-char hash)
+        and value is a corresponding Revision obj
+        """
+        revision_dict = dict((r.id, Revision(r.id, self._repo)) for r in self._repo.commits())
         return revision_dict
         
-        # if revision_id is None
-        #     # default behavior is to return the HEAD
-        #     # gitrev = self.repo.commits()[0]
-        #     gitrev = self.repo.heads[0].commit
-        #     return _log(gitrev)
-        # elsif
-        #     gitrev = self.repo.commit(revision_id) # git.Commit object
-        #     return _log(gitrev) # convert git.Commit to pyvcal.GitRevision for now
 
     @classmethod
     def create(cls,**kwargs):
@@ -49,6 +54,9 @@ class Repository(object):
         Takes a git.Commit object returns a corresponding GitRevision obj
         This is called _log since it's analogous to the SVN equivalent in
         /pyvcall/pyvcal/subversion
+        
+        DEPRECATED. Leaving it in just in case something still uses it.
+        TODO: Find anything that still depends on this.
         """
         return None
         # rev = Revision()
