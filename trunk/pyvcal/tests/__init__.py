@@ -1,7 +1,21 @@
 from unittest import TestSuite
+import os
+import subprocess
 
-from git import test_git
-from perforce import test_perforce
-from subversion import test_subversion
+import git
+import subversion
+import perforce
 
-test_all = TestSuite([test_git, test_perforce, test_subversion])
+import pyvcal
+
+test_all = TestSuite([  git.test_git, 
+                        perforce.test_perforce, 
+                        subversion.test_subversion
+                    ])
+
+import independent
+
+for test_module in [git, subversion, perforce]:
+    test_all.addTest(independent.tests(test_module))
+    
+    
