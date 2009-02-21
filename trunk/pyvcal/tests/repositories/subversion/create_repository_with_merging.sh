@@ -54,7 +54,7 @@ svn ci -m "commit of fruit into branches " fruit.txt
 cd ../../trunk/
 echo apples >fruit.txt 
 echo bananas >> fruit.txt  
-echo cherries >> fruit.txt 
+echo cherry >> fruit.txt 
 svn ci -m "Edited fruit.txt" fruit.txt
 
 # Merge branch into trunk 
