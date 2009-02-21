@@ -1,5 +1,6 @@
 from revision import Revision
 
+from datetime import datetime
 from subvertpy import repos, ra, NODE_NONE, NODE_DIR, NODE_FILE
 
 class Branch(object):
