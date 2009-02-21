@@ -29,7 +29,7 @@ USAGE_STRING = """
 Usage: vcs_api = pyvcal.get_api('<vcs>')
          where <vcs> can be:
          - git
-         - svn
+         - subversion
          - perforce
 
 """
@@ -38,7 +38,7 @@ def get_api(system):
     try:
         vcs = {
             'git' : git,
-            'svn' : subversion,
+            'subversion' : subversion,
             'perforce' : perforce
         }[system]
     except KeyError, e:
