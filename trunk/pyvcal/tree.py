@@ -8,7 +8,7 @@ class Tree(Resource):
         raise NotImplementedError 
         
     def get_contents(self, recursive=True):
-        """Return the contents of a tree as a list of Paths."""
+        """Return the contents of a tree as a list of Resources."""
         raise NotImplementedError 
         
     path = property(get_path)
