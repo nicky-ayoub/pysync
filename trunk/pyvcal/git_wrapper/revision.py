@@ -1,4 +1,5 @@
 from .revisionproperties import RevisionProperties
+from .tree import Tree
 
 
 class Revision(object):
@@ -27,6 +28,14 @@ class Revision(object):
         # diff = self._repo.diff(self._git_commit, self._git_commit.parents[0])
         # TODO: implement RevisionDiff to implement this
         raise NotImplementedError
+        
+    def _get_tree(self):
+        """Return Tree object representing top-level contents"""
+        return Tree(self._git_commit.tree)
+        
+    def _get_identity(self):
+        """Return revision ID of this revision; will be a 40-char hash"""
+        return self._rev_id
     
 
         
@@ -41,3 +50,5 @@ class Revision(object):
     predecessors = property(get_predecessors)
     properties = property(get_properties)
     diff_with_parent = property(get_diff_with_parent)
+    tree = property(_get_tree)
+    identity = property(_get_identity)

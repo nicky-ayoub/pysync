@@ -12,12 +12,9 @@ class Repository(object):
     def get_uri(self):
         """Return path of repository (unlike svn or p4c, this is LOCAL)"""
         return self._path
-        # raise NotImplementedError
         
     def get_branches(self):
         """Return the branches available in the repository as a list"""
-        # TODO: implement git_wrapper/branch.py to implement this
-        # raise NotImplementedError
         branch_list = list((Branch(b.name, Revision(b.commit.id, self._repo), self._repo)) for b in self._repo.branches)
         return branch_list
     
@@ -29,7 +26,6 @@ class Repository(object):
         """
         gitrev = self._repo.commits(start=branch_id)[0] # git.Commit at head of specified branch
         return Revision(gitrev.id, self._repo)
-        # raise NotImplementedError
     
     def get_revisions(self, revision_id=None):
         """
