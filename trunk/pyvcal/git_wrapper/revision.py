@@ -1,4 +1,5 @@
-import time
+from .revisionproperties import RevisionProperties
+
 
 class Revision(object):
     def __init__(self, rev_id, repo):
@@ -15,7 +16,7 @@ class Revision(object):
         
     def get_properties(self):
         """Get the RevisionProperties for this revision."""
-        return RevisionProperties(self, self._rev_id, self._repo)
+        return RevisionProperties(self._rev_id, self._repo, self)
         
     def get_diff_with_parent(self, paths=None):
         """Return the RevisionDiff from this revision to its parent, optionally restricted to the given file(s) on paths
