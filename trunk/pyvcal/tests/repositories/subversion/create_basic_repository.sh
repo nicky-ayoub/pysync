@@ -1,4 +1,4 @@
-reponame="svn-basic-repo"
+reponame="svn-merge-branch"
 
 mkdir $reponame
 cd $reponame
@@ -9,14 +9,19 @@ svnadmin create .
 svn_path=`pwd`
 
 cd ../
-mkdir repo01
-cd repo01/
+mkdir repo05
+cd repo05/
 
 # Checking out the repository
 svn co file://$svn_path
 
 # Going into the repo dir
 cd $reponame
+
+# Adding branches/ trunk/ and tags/
+mkdir branches/
+mkdir tags/
+mkdir trunk/
 
 # add initial commit with empty README.txt
 touch README.txt
