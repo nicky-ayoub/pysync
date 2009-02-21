@@ -8,15 +8,18 @@ class Tree(Resource):
         super(Revision, self).__init__()
         self._tree_id = tree_id
         self._repo = repo
+        self._contents = dict()
 
     def get_path(self):
         """Return the path to this tree in its container Repository"""
         raise NotImplementedError 
         
     def get_contents(self, recursive=True):
-        """Return the contents of a tree as a list of Paths."""
-
-        raise NotImplementedError 
+        """Return the immediate contents of a tree as a list of Paths."""
         
+        raise NotImplementedError 
+    
+    
+    
     path = property(get_path)
     contents = property(get_contents)

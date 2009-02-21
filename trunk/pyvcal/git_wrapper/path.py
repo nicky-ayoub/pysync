@@ -1,7 +1,7 @@
 class Path(object):
     """A path to a versioned resource."""
     
-    def __init__(self, rev):
+    def __init__(self, rev, treeish):
         self._rev = rev # Revision object
         self._id = self._rev.identity
     
