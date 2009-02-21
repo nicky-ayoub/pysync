@@ -15,8 +15,8 @@ class Tree(Resource):
         raise NotImplementedError 
         
     def get_contents(self, recursive=True):
-        """Return the immediate contents of a tree as a list of Paths."""
-        
+        """Return the immediate contents of a tree as a list of Resources."""
+        # TODO: implement Resource.py
         raise NotImplementedError 
     
     
