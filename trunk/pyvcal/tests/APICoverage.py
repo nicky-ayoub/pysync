@@ -47,9 +47,11 @@ for vcs in vcs_list:
                         if not member_general in members_vcs.keys():
                             print "Must implement ", full_vcs, ".", class_name, "::", member_general, " function."
                         else:
-                            if len(inspect.getargspec(members_general[member_general])[0]) != \
-                               len(inspect.getargspec(members_vcs[member_general])[0]):
-                                print "Method signature of ", full_vcs, ".", class_name, "::", member_general, " function appears to be wrong."
+                            args_general = inspect.getargspec(members_general[member_general])[0]
+                            args_vcs = inspect.getargspec(members_vcs[member_general])[0]
+                            for arg in args_general:
+                                if not arg in args_vcs:
+                                    print "Method signature of ", full_vcs, ".", class_name, "::", member_general, " function appears to be wrong: Doesn't have the ", arg, " argument."
                             
                             args = []
                             for i in range(len(inspect.getargspec(members_vcs[member_general])[0])):
