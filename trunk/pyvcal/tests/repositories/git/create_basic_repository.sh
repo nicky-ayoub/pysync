@@ -23,4 +23,3 @@ git commit -m "Delete README"
 
 
 cd ../ # back out of testrepo01
-rm -rf testrepo01
