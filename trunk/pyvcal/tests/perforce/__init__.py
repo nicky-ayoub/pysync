@@ -23,6 +23,8 @@ class BasicRepository(object):
                          stdout=subprocess.PIPE).wait()
         os.chdir(os.path.join('basic', 'repo'))
         self.p4d = subprocess.Popen(['p4d'], stdout=subprocess.PIPE)
+        import time
+        time.sleep(2)
         
     def repo(self):
         """Return the PyVCAL Repository"""

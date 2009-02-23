@@ -21,7 +21,7 @@ class BasicRepository(object):
         
     def repo(self):
         """Return the PyVCAL Repository"""
-        return api.Repository(path=os.path.join(path, 'svn-basic'))
+        return api.Repository(path="file://" + os.path.join(path, 'svn-basic'))
 
     def teardown(self):
         rmrf(os.path.join(path, 'svn-basic'))

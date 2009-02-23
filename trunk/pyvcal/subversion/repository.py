@@ -7,26 +7,24 @@ from subvertpy import repos, ra, NODE_NONE, NODE_DIR, NODE_FILE
 
 class Repository(object):
 
-    def __init__(self, path=None):
+    def __init__(self, path):
         """ Constructor for the SVN Repository object """
         super(Repository, self).__init__()
-
         self.path = path
+        self.connect()
 
     def get_uri(self):
         """ Return the URI of the repository """
-        self.connect(self.path)
         return self.ra_api.get_repos_root()
 	
-    def connect(self, path):
+    def connect(self):
         """ Given a path, then connect to that path """
-        self.path = path
         self.ra_api = ra.RemoteAccess(self.path)
 
     def get_revisions(self):
         """ Return a dictionary of Revision objects where the key is the revision_id 
         and the value is the actual Revision object """
-        self.connect(self.path)
+
         rev_id = self.ra_api.get_latest_revnum()
         return self._log(rev=rev_id)
 	
@@ -71,7 +69,7 @@ class Repository(object):
                                     log_path)
 
         self.ra_api.get_log(callback=cb, paths=[log_path],
-                           start=0, end=rev,
+                           start=1, end=rev,
                            discover_changed_paths=True,
                            revprops=["svn:date", "svn:author", "svn:log"])
 
