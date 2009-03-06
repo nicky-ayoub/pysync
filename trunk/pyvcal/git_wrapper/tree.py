@@ -5,7 +5,7 @@ class Tree(Resource):
 
     def __init__(self, tree_id, repo):
         # all we need is the hash and repo; we let gitpython do the rest
-        super(Revision, self).__init__()
+        super(Tree, self).__init__()
         self._tree_id = tree_id
         self._repo = repo
         self._contents = dict()

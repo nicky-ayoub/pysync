@@ -3,7 +3,8 @@ from pyvcal.resource import Resource
 class File(Resource):
     """A snapshot of a versioned file."""
     
-    def __init__(self, identity, repo)
+    def __init__(self, identity, repo):
+        # just need hash and repo
         super(File, self).__init__()
         self._id = identity # hash of this object
         self._repo = repo # repository this file belongs to

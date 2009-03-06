@@ -1,5 +1,6 @@
 from .revisionproperties import RevisionProperties
 from .tree import Tree
+from .file import File
 
 
 class Revision(object):
@@ -31,7 +32,7 @@ class Revision(object):
         
     def _get_tree(self):
         """Return Tree object representing top-level contents"""
-        return Tree(self._git_commit.tree)
+        return Tree(self._git_commit.tree, self._repo)
         
     def _get_identity(self):
         """Return revision ID of this revision; will be a 40-char hash"""
