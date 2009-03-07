@@ -9,12 +9,12 @@
 
 from pyvcal import *
 
-def test_svn_connect
+#def test_svn_connect
 
 
-def test_git_connect
+#def test_git_connect
 
-def test_per_connect
+#def test_per_connect
 
 
-def test_connect
+#def test_connect
