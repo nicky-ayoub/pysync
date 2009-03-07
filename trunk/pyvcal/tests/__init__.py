@@ -2,7 +2,7 @@ from unittest import TestSuite
 import os
 import subprocess
 
-import git
+import git_wrapper as git
 import subversion
 import perforce
 
