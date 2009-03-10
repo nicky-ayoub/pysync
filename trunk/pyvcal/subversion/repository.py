@@ -19,6 +19,13 @@ class Repository(object):
 	
     def connect(self):
         """ Given a path, then connect to that path """
+	
+	# Check if the path contains a 'file://' indicator
+	#if self.path.find() == -1:
+	#	self.abs_path = "file://" + self.path
+	#else:
+	#	self.abs_path = self.path
+	
         self.ra_api = ra.RemoteAccess(self.path)
 
     def get_revisions(self):

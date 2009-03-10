@@ -1,6 +1,7 @@
 from revision import Revision
 
 from datetime import datetime
+
 from subvertpy import repos, ra, NODE_NONE, NODE_DIR, NODE_FILE
 
 class Branch(object):
@@ -19,7 +20,8 @@ class Branch(object):
         
     def get_name(self):
         """ Return the user-defined name of the branch i.e. the directory name """
-        raise NotImplementedError 
+	return self._branch_path
+        #raise NotImplementedError 
 
     def _log(self, path='', rev=None):
         """ Return a Revision object scoped to path with revision id as rev """
