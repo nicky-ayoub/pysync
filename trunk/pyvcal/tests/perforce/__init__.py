@@ -36,3 +36,5 @@ class BasicRepository(object):
 
 test_perforce = TestSuite()
 
+def test_create():
+    api.create()

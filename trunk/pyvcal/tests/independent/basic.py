@@ -1,13 +1,21 @@
-from modulespecific import ModuleSpecificTestCase
+import modulespecific
+import unittest
 
-class TestBasic(ModuleSpecificTestCase):        
+# Basic sanity test.
+
+
+class TestBasic(modulespecific.ModuleSpecificTestCase):        
     def setUp(self):
         self.basic_repo = self.test_module.BasicRepository()
         self.repo = self.basic_repo.repo()
 
     def runTest(self):
         self.assertTrue(self.repo)
-        self.assertEquals(len(self.repo.revisions), 4)
-    
+        revisions = self.repo.revisions
+        self.assertEquals(len(revisions), 4)
+        
     def tearDown(self):
         self.basic_repo.teardown()
+        
+#    suite = unittest.TestLoader().loadTestsFromTestCase(TestBasic)
+    
