@@ -17,11 +17,14 @@ path = os.path.join(os.path.dirname(__file__),
 class BasicRepository(object):
     """Represents our 'basic' test repository"""
     def __init__(self):
+        """Run the create_basic_repository script and connect to the created repository."""
         super(BasicRepository, self).__init__()
         os.chdir(path)
         subprocess.Popen(['bash', 'create_basic_repository.sh'],
                          stdout=subprocess.PIPE).wait()
         os.chdir(os.path.join('basic', 'repo'))
+        
+        ## A running perforce server process.
         self.p4d = subprocess.Popen(['p4d'], stdout=subprocess.PIPE)
         import time
         time.sleep(2)
@@ -31,10 +34,12 @@ class BasicRepository(object):
         return api.Repository()
 
     def teardown(self):
+        """Clean up the created repository."""
         os.kill(self.p4d.pid, signal.SIGKILL)
         rmrf(os.path.join(path, 'basic'))
 
 test_perforce = TestSuite()
 
 def test_create():
+    """Test Perforce repository creation."""
     api.create()

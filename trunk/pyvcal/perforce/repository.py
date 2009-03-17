@@ -6,8 +6,10 @@ import P4
 
 
 
-class Repository(object):    
+class Repository(object):
+    """A Perforce repository. """    
     def __init__(self, user=None, password=None, host=None, port=str(1666), client=None, cwd=None):
+        """Initialize a Perforce repository. Perforce has defaults for everything."""
         super(Repository, self).__init__()
         
         self._user = user
@@ -38,10 +40,14 @@ class Repository(object):
             for r in raw_revisions:
                 result[r.properties.revision_id] = r   
             return result
-            
 
+    ## Meaningless URI for the perforce repository
     uri = property(get_uri)
-    branches = property(get_branches)
+    
+    ## Logical branches in the perforce repository
+    branches = property(get_branches) 
+    
+    ## Global revisions in the perforce repository
     revisions = property(get_revisions)
 
     @classmethod
@@ -84,9 +90,11 @@ class P4Client(object):
 
     @property
     def host(self):
+        """Return the server host"""
         return self._p4c.host
         
     @property
     def port(self):
+        """Return the server port"""
         return self._p4c.port
 

@@ -21,8 +21,17 @@ class RevisionProperties(object):
         """Return the revision identifier of the revision."""
         pass
     
+    ## See get_revision
     revision = property(get_revision)
+    
+    ## See get_commit_message
     commit_message = property(get_commit_message)
+    
+    ## See get_committer
     committer = property(get_committer)
+    
+    ## See get_time
     time = property(get_time)
+    
+    ## See get_revision_id
     revision_id = property(get_revision_id)

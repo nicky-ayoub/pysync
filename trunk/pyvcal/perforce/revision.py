@@ -3,6 +3,7 @@ from .revisionproperties import RevisionProperties
 class Revision(object):
     """The complete state of a branch at a given time"""
     def __init__(self, p4dict):
+        """Initialize a complete Perforce changeset."""
         super(Revision, self).__init__()
         self._properties = RevisionProperties(self, p4dict)
 
@@ -26,6 +27,12 @@ class Revision(object):
         """Return the RevisionDiff from Revision src to Revision dst, optionally restricted to the given file(s) on paths"""
         raise NotImplementedError 
 
+
+    ## Predecessor revisions of a revision
     predecessors = property(get_predecessors)
+    
+    ## Properties of a revision
     properties = property(get_properties)
+    
+    ## Diff between this revision and its parent. Will be a fake for revisions with multiple parents.
     diff_with_parent = property(get_diff_with_parent)

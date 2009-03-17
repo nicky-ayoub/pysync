@@ -3,6 +3,7 @@ from datetime import datetime
 class RevisionProperties(object):
     """Metadata for a revision"""
     def __init__(self, revision, p4dict):
+        """Initialize a RevisionProperties based on a P4API dict."""
         super(RevisionProperties, self).__init__()
         self._revision = revision
         self._commit_msg = p4dict['desc']
@@ -32,8 +33,17 @@ class RevisionProperties(object):
         """Return the revision identifier for the revision."""
         return self._revision_id
         
+    ## See get_revision
     revision = property(get_revision)
+    
+    ## See get_commit_message
     commit_message = property(get_commit_message)
+    
+    ## See get_committer
     committer = property(get_committer)
+    
+    ## See get_time
     time = property(get_time)
+    
+    ## See get_revision_id
     revision_id = property(get_revision_id)
