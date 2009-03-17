@@ -42,4 +42,4 @@ test_perforce = TestSuite()
 
 def test_create():
     """Test Perforce repository creation."""
-    api.create()
+    api.Repository.create()
