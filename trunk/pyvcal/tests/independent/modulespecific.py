@@ -5,5 +5,5 @@ class ModuleSpecificTestCase(TestCase):
         super(ModuleSpecificTestCase, self).__init__()
         self.test_module = test_module
         
-    def __str__(self):
-        return str(self.__class__) + ": " + self.test_module.__name__
+    def shortDescription(self):
+        return "%-61s%-24s" % (self.__class__.__module__ + "." + self.__class__.__name__ + ": ", self.test_module.__name__)
