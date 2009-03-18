@@ -4,13 +4,16 @@ from .revision import Revision
 from .branch import Branch
 
 class Repository(object):
+    """A Git repository."""
+    
     def __init__(self, path=None): # replace kwargs with whatever you need to init
+        """Initialize a Git repository. Local path is needed."""
         super(Repository, self).__init__()
         self._path = path
         self._repo = Repo(self._path)
     
     def get_uri(self):
-        """Return path of repository (unlike svn or p4c, this is LOCAL)"""
+        """Return path of repository"""
         return self._path
         
     def get_branches(self):

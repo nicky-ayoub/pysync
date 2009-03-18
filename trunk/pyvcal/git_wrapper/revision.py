@@ -4,8 +4,11 @@ from .file import File
 
 
 class Revision(object):
+    """The complete state of a branch at a given time"""
+    
     def __init__(self, rev_id, repo):
         # all we need is the hash and repo; we let gitpython do the rest
+        """Initialize a complete Git delta (analogous to a SVN revision or Perforce changeset)"""
         super(Revision, self).__init__()
         self._rev_id = rev_id
         self._repo = repo
@@ -13,7 +16,7 @@ class Revision(object):
 
     def get_predecessors(self):
         """Return a list of immediate Revisions that flow into this Revision"""
-        parent_list = self._git_commit.parents # git.Commit[]
+        parent_list = self._git_commit.parents # analogous to git.Commit[]
         return list(Revision(p.id, p.repo) for p in parent_list)
         
     def get_properties(self):
@@ -25,10 +28,8 @@ class Revision(object):
         
         If there is more than one parent, this method may return a fake RevisionDiff with no content to represent a merge.
         """
-        # note to self: r1.diff(commit, commit.parents[0])
-        # diff = self._repo.diff(self._git_commit, self._git_commit.parents[0])
-        # TODO: implement RevisionDiff to implement this
-        raise NotImplementedError
+        # Will return git.diff object until pyvcal.diff is formalized
+        return self.diff(self, self.get_predecessors()[0])
         
     def _get_tree(self):
         """Return Tree object representing top-level contents"""
@@ -41,12 +42,12 @@ class Revision(object):
 
         
     @classmethod
-    def diff(cls, src, dst, paths=None):
+    def diff(cls, a, b, paths=None):
         """Return the RevisionDiff from Revision src to Revision dst, optionally restricted to the given file(s) on paths"""
-        # paths functionality not implemented yet
-        # TODO: implement RevisionDiff to implement this
-        
-        raise NotImplementedError
+        # Note, returns a git.diff object instead of a pyvcal.diff
+        # object since they have not been formalized yet
+        # TODO: rewrite this when pyvcal.diff has been formalized        
+        return Commit.diff(self._repo, a, b, paths)
     
     predecessors = property(get_predecessors)
     properties = property(get_properties)

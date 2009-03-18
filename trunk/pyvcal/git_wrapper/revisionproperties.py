@@ -5,9 +5,10 @@ from .user import User
 
 class RevisionProperties(object):
     """Metadata for a revision"""
-    def __init__(self, identity, repo, rev):
+    def __init__(self, id_hash, repo, rev):
+        """Initialize a RevisionProperties based on provided Git commit ID hash"""
         super(RevisionProperties, self).__init__()
-        self._id = identity # should be a 40char git commit hash id
+        self._id = id_hash # should be a 40char git commit hash id
         self._repo = repo # repo this belongs to
         self._rev = rev
     
@@ -26,8 +27,8 @@ class RevisionProperties(object):
         return User(self._repo.commit(self._id).committer.name)
         
     def get_time(self):
-        """Return the (TODO dataformat) of the revision"""
-        # currently returns a python timedate obj
+        """Return the python timedate obj of the revision"""
+        # relies on Revision to pass along the python timedate obj
         return self._repo.commit(self._id).committed_date
     
     def get_revision_id(self):
