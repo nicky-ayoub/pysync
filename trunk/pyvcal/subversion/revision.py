@@ -1,4 +1,7 @@
 from revisionproperties import RevisionProperties
+from resource import Resource
+from revisiondiff import RevisionDiff
+
 from subvertpy import repos, ra, NODE_NONE, NODE_DIR, NODE_FILE
 
 class Revision(object):
@@ -16,10 +19,15 @@ class Revision(object):
         self.branch_path = branch_path
 		
         self._proplist = RevisionProperties(self, revnum, author, log, date)
+        self._resource = Resource(self.ra_api, self.branch_path, self.paths, self.revnum)
 
     def get_predecessors(self):
         """ Return a list of Revision(s) that flow into this Revision """
         raise NotImplementedError 
+
+    def get_resource(self):
+        """ Return the Resource that belongs to this Revision """
+        return self._resource
         
     def get_properties(self):
         """ Get the RevisionProperties for this revision """
@@ -39,7 +47,37 @@ class Revision(object):
     def diff(cls, src, dst, paths=None):
         """ Return the RevisionDiff from Revision src to Revision dst, optionally 
 	    restricted to the given file(s) on paths """
-        raise NotImplementedError 
+        
+        self.diff_dict = {}
+        paths = os.path.join(self.branch_path, paths)
+
+        for path in self.paths:
+            # We do not want a leading '/' on our path
+            if path[0] == '/':
+                path = path[1:]
+
+            if not path.startswith(paths):
+                continue
+            src = Revision((self.revnum-1), self.author, self.log, 
+                            self.date, self._get_node_path(path), 
+                            self.ra_api, self.branch_path)
+            dst = Revision(self.revnum, self.author, self.log, 
+                            self.date, self._get_node_path(path), 
+                            self.ra_api, self.branch_path)
+
+            self.diff_dict[self._get_node_path(path)] = RevisionDiff(src, dst)
+
+        return self.diff_dict
+
+    def _get_node_path(self, path):
+        """Return the node path of a given path which is everything
+           after self.branch_path."""
+
+        branch_path = os.path.join(self.branch_path, '')
+        # The path should always be prefixed by the branch path, 
+        #assert path.startswith(branch_path)
+        
+        return path[len(branch_path):]
 
     predecessors = property(get_predecessors)
     properties = property(get_properties)
