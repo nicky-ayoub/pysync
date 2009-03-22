@@ -1,5 +1,3 @@
-from revision import Revision
-
 import os
 
 from subvertpy import repos, ra, NODE_DIR, NODE_FILE

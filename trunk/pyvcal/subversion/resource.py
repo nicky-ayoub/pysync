@@ -1,4 +1,3 @@
-from repository import Repository
 from property import ResourceProperties
 import os 
 
