@@ -12,6 +12,8 @@ get_api(...).Repository
 
 """
 
+## @package pyvcal The PyVCAL API for version control system abstraction.
+
 from repository import Repository
 
 import perforce, subversion, git_wrapper as git
