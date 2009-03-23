@@ -81,6 +81,10 @@ class Revision(object):
         
         return path[len(branch_path):]
 
+    def _get_revision_number(self):
+        """ Return the revision number that belongs to this Revision """
+	return self.revnum
+
     predecessors = property(get_predecessors)
     properties = property(get_properties)
     diff_with_parent = property(get_diff_with_parent)
