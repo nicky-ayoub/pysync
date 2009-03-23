@@ -51,6 +51,11 @@ class Repository(object):
             for branch in branch_list:
                 branch_dict[branch] = Branch(('branches/' + branch), self.ra_api)
 
+        # If repo doesnt have the /trunk, /branches, /tags structure, then the
+        # repository will only report a single branch 
+        if not branch_dict:
+            branch_dict[''] = Branch('', self.ra_api)
+
     	return branch_dict
 	
 	""" Helper methods for this class """

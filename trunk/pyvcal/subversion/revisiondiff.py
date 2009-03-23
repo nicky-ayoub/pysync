@@ -1,3 +1,5 @@
+from filediff import FileDiff
+
 import os
 
 from subvertpy import repos, ra, NODE_DIR, NODE_FILE
@@ -15,7 +17,7 @@ class RevisionDiff(object):
         resource1 = self._rev1.get_resource()
         resource2 = self._rev2.get_resource()
         
-        if resource1.is_file() and resource1.is_file(): 
+        if resource1.is_file() and resource2.is_file(): 
             return FileDiff(resource1, resource2)
             
 
