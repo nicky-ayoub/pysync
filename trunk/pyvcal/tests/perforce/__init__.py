@@ -42,4 +42,5 @@ test_perforce = TestSuite()
 
 def test_create():
     """Test Perforce repository creation."""
-    api.Repository.create()
+    repo = api.Repository.create()
+    os.kill(repo.p4d.pid, signal.SIGKILL)
