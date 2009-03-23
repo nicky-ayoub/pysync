@@ -18,6 +18,7 @@ class Resource(object):
     
     def get_latest_revision(self):
         """ Return the last revision this was modified """
+        # svn info self.full_path()
         raise NotImplementedError
 
     def get_properties(self):

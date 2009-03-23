@@ -31,7 +31,6 @@ class Revision(object):
         
     def get_properties(self):
         """ Get the RevisionProperties for this revision """
-        #prop = ra_api.rev_proplist(self.rev)
         return self._proplist
         
     def get_diff_with_parent(self, paths=None):
@@ -41,6 +40,9 @@ class Revision(object):
         If there is more than one parent, this method may return a fake RevisionDiff 
     	with no content to represent a merge.
         """
+        #parents = self.get_predecessors()
+        #for p in parents:
+        #    diff(self, p, paths)
         raise NotImplementedError
         
     @classmethod

@@ -20,8 +20,7 @@ class Branch(object):
         
     def get_name(self):
         """ Return the user-defined name of the branch i.e. the directory name """
-	return self._branch_path
-        #raise NotImplementedError 
+        return self._branch_path
 
     def _log(self, path='', rev=None):
         """ Return a Revision object scoped to path with revision id as rev """
