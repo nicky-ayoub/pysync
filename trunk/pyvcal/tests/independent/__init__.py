@@ -1,8 +1,11 @@
 from unittest import TestSuite, TestCase
+
 from basic import TestBasic
-from repository import *
 from branch import *
-from revisionproperties import*
+from repository import *
+from revision import *
+from revisionproperties import *
+from user import TestUserAuthor
 
 def tests(test_module):
     """return a testsuite that may use API"""
@@ -19,7 +22,11 @@ def tests(test_module):
         TestRevisionPropertiesCommitMessage,
         TestRevisionPropertiesCommitter,
         TestRevisionPropertiesTime,
-        TestRevisionPropertiesRevisionID
+        TestRevisionPropertiesRevisionID,
+        TestRevisionPredecessors,
+        TestRevisionGetProperties,
+        TestRevisionDiffWithParents,
+        TestUserAuthor
         ]
     
     result = TestSuite([case(test_module) for case in tests])

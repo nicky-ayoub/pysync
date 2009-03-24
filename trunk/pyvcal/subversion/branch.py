@@ -39,9 +39,11 @@ class Branch(object):
                             path))
 
         self._ra_api.get_log(callback=cb, paths=[path],
-                           start=0, end=rev,
+                           start=1, end=rev,
                            discover_changed_paths=True,
                            revprops=["svn:date", "svn:author", "svn:log"])
+
+        self.rev_list.reverse()
 
         return self.rev_list
         
