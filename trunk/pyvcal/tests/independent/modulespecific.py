@@ -6,4 +6,4 @@ class ModuleSpecificTestCase(TestCase):
         self.test_module = test_module
         
     def shortDescription(self):
-        return "%-61s%-24s" % (self.__class__.__module__ + "." + self.__class__.__name__ + ": ", self.test_module.__name__)
+        return "%-81s%-24s" % (self.__class__.__module__ + "." + self.__class__.__name__ + ": ", self.test_module.__name__)
