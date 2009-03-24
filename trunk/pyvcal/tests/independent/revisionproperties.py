@@ -37,14 +37,14 @@ class TestRevisionPropertiesCommitter(TestRevisionProperties):
     def runTest(self):
         """Test that the 'basic' test RevisionProperties reports committer as not null."""
 	committer = self.properties.committer
-        self.assertNotNull(committer)
+        self.assert_(committer)
         
-class TestRevisionPropertiesTime(modulespecific.ModuleSpecificTestCase):
+class TestRevisionPropertiesTime(TestRevisionProperties):
     """Test RevisionProperties.time"""
     def runTest(self):
         """Test that the 'basic' test RevisionProperties reports time as not null."""
-	time = self.properties.time
-        self.assertNotNull(time)    
+	rtime = self.properties.time
+        self.assert_(rtime)    
 
 class TestRevisionPropertiesRevisionID(TestRevisionProperties):
     """Test RevisionProperties.revision_id"""
