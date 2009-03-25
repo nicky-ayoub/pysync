@@ -1,11 +1,8 @@
-class RevisionDiff(object):
+ class RevisionDiff(object):
     """The set of changes needed to transform one revision into another."""
 
-class NullRevisionDiff(RevisionDiff):
-    """A fake diff"""
-        
+    def get_value():
+        """Concatenation of Unified Diffs of resources between the revisions."""
+        raise NotImplementedError 
 
-
-class MultipleParentNullRevisionDiff(NullRevisionDiff):
-    """A fake diff for when a revision doesn't have a unique parent."""
-    
+    value = property(get_value)
