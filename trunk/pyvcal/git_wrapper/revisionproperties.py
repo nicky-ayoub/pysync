@@ -5,12 +5,13 @@ from .user import User
 
 class RevisionProperties(object):
     """Metadata for a revision"""
-    def __init__(self, id_hash, repo, rev):
+    def __init__(self, id_hash, repo, rev, path):
         """Initialize a RevisionProperties based on provided Git commit ID hash"""
         super(RevisionProperties, self).__init__()
         self._id = id_hash # should be a 40char git commit hash id
         self._repo = repo # repo this belongs to
         self._rev = rev
+        self._path = path
     
     def get_revision(self):
         """Return the Revision obj to which these properties apply."""
@@ -40,3 +41,35 @@ class RevisionProperties(object):
     committer = property(get_committer)
     time = property(get_time)
     revision_id = property(get_revision_id)
+
+
+
+
+
+class FileProperties(ResourceProperties):
+    """ The properties of a File """
+
+    def __init__(self, id_hash=None, repo=None, rev=None, path=None):
+        super(FileProperties, self).__init__()
+        self._id = id_hash # should be a 40char git commit hash id
+        self._repo = repo # repo this belongs to
+        self._rev = rev
+        self._path = path    
+
+    def _get_type(self):
+        """ Return the type of this Resource """
+        return 'file'
+
+
+class TreeProperties(ResourceProperties):
+    """ The properties of a Tree """
+    def __init__(self, id_hash=None, repo=None, rev=None, path=None):
+        super(TreeProperties, self).__init__()
+        self._id = id_hash # should be a 40char git commit hash id
+        self._repo = repo # repo this belongs to
+        self._rev = rev
+        self._path = path   
+
+    def _get_type(self):
+        """ Return the type of this Resource """
+        return 'directory'

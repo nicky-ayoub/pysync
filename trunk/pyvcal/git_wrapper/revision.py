@@ -1,7 +1,7 @@
 from .revisionproperties import RevisionProperties
 from .tree import Tree
 from .file import File
-
+from .revisiondiff import RevisionDiff
 
 class Revision(object):
     """The complete state of a branch at a given time"""
@@ -47,7 +47,7 @@ class Revision(object):
         # Note, returns a git.diff object instead of a pyvcal.diff
         # object since they have not been formalized yet
         # TODO: rewrite this when pyvcal.diff has been formalized        
-        return Commit.diff(self._repo, a, b, paths)
+        return RevisionDiff(a, b, self._repo)
     
     predecessors = property(get_predecessors)
     properties = property(get_properties)
