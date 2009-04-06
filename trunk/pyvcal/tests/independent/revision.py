@@ -37,6 +37,6 @@ class TestRevisionDiffWithParents(TestRevision):
     """Test RevisionProperties.diff_with_parents"""
     def runTest(self):
         """Test the get diff with parents returns a valid RevisionDiff object."""
-        self.assertRaises(NotImplementedError, self.head.diff_with_parents)
+        self.assertRaises(NotImplementedError, self.head.diff_with_parent)
 
 

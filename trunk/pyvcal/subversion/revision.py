@@ -25,6 +25,10 @@ class Revision(object):
         """ Return a list of Revision(s) that flow into this Revision """
         raise NotImplementedError 
 
+    def _get_ra_api(self):
+        """ Returns the self.ra_api variable associated with this Revision object"""
+        return self.ra_api
+
     def get_resource(self):
         """ Return the Resource that belongs to this Revision """
         return self._resource
