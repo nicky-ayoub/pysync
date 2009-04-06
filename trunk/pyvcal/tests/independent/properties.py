@@ -23,7 +23,4 @@ class TestPropertiesResourceProperties(TestProperties):
         """Test that the get_properties() returns the properties associated 
            with the Resource in question."""
         props = self.resource.properties
-        self.assert_(props)
-        #self.assert_(props.path)
-        #self.assert_(props.resource)
-        #self.assert_(props.revision_number)
+        self.assertTrue(props)
