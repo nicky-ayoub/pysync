@@ -17,7 +17,7 @@ class TestBranchName(TestBranch):
     """Test Branch.name"""
     def runTest(self):
         """Test that the 'basic' test Branch.get_name returns the proper name"""
-        self.assertTrue(self.branches)
+        self.assertTrue(self.main_branch)
         name = self.main_branch.name
         self.assertEquals(name, '')
 
