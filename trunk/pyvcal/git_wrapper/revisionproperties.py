@@ -42,9 +42,8 @@ class RevisionProperties(object):
     time = property(get_time)
     revision_id = property(get_revision_id)
 
-
-
-
+class ResourceProperties(object):
+    pass
 
 class FileProperties(ResourceProperties):
     """ The properties of a File """

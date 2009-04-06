@@ -3,7 +3,7 @@ import os
 from git import Commit, Diff
 
 class RevisionDiff(object):
-"""The set of changes needed to transform one revision into another."""
+    """The set of changes needed to transform one revision into another."""
 
     def __init__(self, r1, r2, repo):
         """r1 is the older revision, r2 is the newer revision.
