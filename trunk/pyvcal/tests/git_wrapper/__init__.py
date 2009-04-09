@@ -14,6 +14,8 @@ class BasicRepository(object):
         """Run the create_basic_repository script"""
         super(BasicRepository, self).__init__()
         os.chdir(path)
+        if (os.path.exists(os.path.join(path, 'testrepo01'))):
+            self.teardown() 
         subprocess.Popen(['bash', 'create_basic_repository.sh'],    
                          stdout=subprocess.PIPE).wait()
         
@@ -22,6 +24,13 @@ class BasicRepository(object):
         return api.Repository(path=os.path.join(path, 'testrepo01'))
 
     def teardown(self):
+        """Clean up the created repository"""
         rmrf(os.path.join(path, 'testrepo01'))
 
 test_git = TestSuite()
+
+def test_create():
+    """Test Git repository creation."""
+    repo = api.Repository.create(os.path.join(path, 'testrepo01'))
+
+

@@ -1,4 +1,5 @@
-from git import *
+# from git import *
+import git
 
 from .revision import Revision
 from .branch import Branch
@@ -10,7 +11,7 @@ class Repository(object):
         """Initialize a Git repository. Local path is needed."""
         super(Repository, self).__init__()
         self._path = path
-        self._repo = Repo(self._path)
+        self._repo = git.Repo(self._path)
     
     def get_uri(self):
         """Return path of repository"""
@@ -40,15 +41,15 @@ class Repository(object):
         
 
     @classmethod
-    def create(cls,**kwargs):
-        """Create a new Repository and return it."""
-        raise NotImplementedError
+    def create(cls, path):
+        """Create a new Repository at the given path and return it."""
+        return git.Repo.create(path)
 
     def _connect(self, uri):
         """Initialize a connection to the repository; uri is a string."""
         # DEPRECATED by __init__? Keeping it in here for now
         # TODO: decide if this should be removed
-        self._repo = Repo(uri)
+        self._repo = git.Repo(uri)
         self._path = uri
         
     def _log(self, gitrev):

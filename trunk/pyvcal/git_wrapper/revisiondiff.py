@@ -15,7 +15,7 @@ class RevisionDiff(object):
 
     def get_value():
         """Concatenation of Unified Diffs of resources between the revisions.
-        pg484 of Python in a Nutshell suggests the below method for string
+        pg484 of Python in a Nutshell suggests the below method for big string
         concatenation; unified_diff =+ individual_diff apparently takes
         O(N^{2}) time. The below takes O(N) time.
         """
