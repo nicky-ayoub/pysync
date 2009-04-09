@@ -15,6 +15,8 @@ class Branch(object):
         """Return the user-defined name of the branch as a string"""
         return self._name
 
+    def set_name(self, name):
+        self._name = name
     
     head = property(get_head)
-    name = property(get_name)
+    name = property(get_name, set_name)

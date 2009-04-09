@@ -22,6 +22,18 @@ class Repository(object):
         branches = {}
         for b in self._repo.branches:
             branches[b.name] = Branch(b.name, Revision(b.commit.id, self._repo), self._repo)
+            
+        # If only one branch, name it the empty string for the PyVCAL default branch name
+        if len(branches) is 1:
+            branches[""] = branches.popitem()[1]
+        # If master branch exists, name it the empty string for the PyVCAL default branch name.
+        elif branches.has_key('master'):
+            branches[""] = branches['master']
+            del branches['master']
+        
+        branches[""].name = ""
+            
+        
         return branches
     
     def get_latest_revision(self, branch_id='master'):

@@ -9,7 +9,7 @@ class TestUser(modulespecific.ModuleSpecificTestCase):
         self.repo = self.basic_repo.repo()
         
         self.revisions = self.repo.revisions
-        self.head = self.revisions[len(self.revisions)]
+        self.head = self.repo.branches[""].head
         self.properties = self.head.properties
 
     def tearDown(self):

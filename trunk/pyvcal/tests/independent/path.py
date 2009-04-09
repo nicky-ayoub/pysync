@@ -7,11 +7,9 @@ class TestPath(modulespecific.ModuleSpecificTestCase):
         """Create and connect to a repository."""
         self.basic_repo = self.test_module.BasicRepository()
         self.repo = self.basic_repo.repo()
-		
-	"""Get the latest revision from that repository."""
-	self.revisions = self.repo.revisions
-        self.first = self.revisions[1]
-	self.resource = self.first.get_resource()
+
+# TODO : How do we get to resources and paths from a repository??        
+        
         
     def tearDown(self):
         """Destroy the created repository."""
@@ -22,7 +20,7 @@ class TestPathResource(TestPath):
     def runTest(self):
         """Test that the get_resource() returns the Resource associated with
            this path."""
-        self.assertTrue(self.resource)
+        self.fail("Not implemented yet.")
         #r_path = self.resource.path
         #self.assertEquals(r_path.resource, self.resource)
         
