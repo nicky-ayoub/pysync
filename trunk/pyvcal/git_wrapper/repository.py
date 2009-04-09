@@ -18,9 +18,11 @@ class Repository(object):
         return self._path
         
     def get_branches(self):
-        """Return the branches available in the repository as a list"""
-        branch_list = list((Branch(b.name, Revision(b.commit.id, self._repo), self._repo)) for b in self._repo.branches)
-        return branch_list
+        """Return the branches available in the repository as a hash"""
+        branches = {}
+        for b in self._repo.branches:
+            branches[b.name] = Branch(b.name, Revision(b.commit.id, self._repo), self._repo)
+        return branches
     
     def get_latest_revision(self, branch_id='master'):
         # Return latest revision obj in the specified branch; default is 'master'
