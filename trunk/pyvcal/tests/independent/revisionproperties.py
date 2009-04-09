@@ -8,9 +8,9 @@ class TestRevisionProperties(modulespecific.ModuleSpecificTestCase):
         self.basic_repo = self.test_module.BasicRepository()
         self.repo = self.basic_repo.repo()
                 
-        """Get the latest revision from that repository."""
+        # Get the latest revision from that repository.
         self.revisions = self.repo.revisions
-        self.head = self.revisions[len(self.revisions)]
+        self.head = self.repo.branches[""].head
         self.properties = self.head.properties
         
     def tearDown(self):
@@ -49,6 +49,6 @@ class TestRevisionPropertiesTime(TestRevisionProperties):
 class TestRevisionPropertiesRevisionID(TestRevisionProperties):
     """Test RevisionProperties.revision_id"""
     def runTest(self):
-        """Test that the 'basic' test RevisionProperties reports the right revision_id."""
+        """Test that the 'basic' test RevisionProperties reports revision_id as not null."""
         r_id = self.properties.revision_id
-        self.assertEquals(r_id, len(self.revisions))
+        self.assert_(r_id)
