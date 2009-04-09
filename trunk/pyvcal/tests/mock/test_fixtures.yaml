@@ -1,0 +1,20 @@
+test1:
+    repository:
+        path: http://www.somesvnpath.com/svn
+
+test2:    
+    repository:
+        path: http://www.somesvnpath.com/svn2
+        branches: 
+            branch1: None
+            branch2: None
+
+test3:        
+    repository:
+        path: http://www.somesvnpath.com/svn3
+        branches: 
+            branch1: None
+            branch2: None
+        revisions:
+            - revision1
+            - revision2
