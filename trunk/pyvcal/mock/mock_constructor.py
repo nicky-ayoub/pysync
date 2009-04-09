@@ -1,15 +1,20 @@
 import yaml
 
 from repository import Repository
+from branch import Branch
 
 # maximum YAML length, currently set to 1 megabyte
 MAX_YAML_LENGTH = 1048576
 
 # keys to repository
 REPOSITORY_KEY = 'repository'
-REPOSITORY_PATH = 'path'
 REPOSITORY_BRANCHES = 'branches'
+REPOSITORY_PATH = 'path'
 REPOSITORY_REVISIONS = 'revisions'
+
+# keys to branch
+BRANCH_KEY = 'branches'
+BRANCH_HEAD = 'head'
 
 def construct_repository(path):
     """ read_yaml takes a path to a yaml file """
@@ -23,6 +28,7 @@ def construct_repository(path):
     
         # create repository object from YAML
         repository = process_repository(yaml_rep[REPOSITORY_KEY])
+        process_branch(yaml_rep[BRANCH_KEY], repository)
     
     finally:
         fsock.close()
@@ -42,8 +48,21 @@ def process_repository(repo_dict):
     returns a Repository object. This method should only be called by 
     read_yaml. """
     path = repo_dict[REPOSITORY_PATH]
-    branches = get_value_default(repo_dict, REPOSITORY_BRANCHES, {})
     revisions = get_value_default(repo_dict, REPOSITORY_REVISIONS, [])
+
+    branches = {}
+    # if the fixture does have branches defined, set them to be None
+    if REPOSITORY_BRANCHES in repo_dict:
+        for branch_name in repo_dict[REPOSITORY_BRANCHES]:
+            branches[branch_name] = None
     
-    return Repository(path, branches, revisions)
+    return Repository(path, branches, revisions, True)
+
+def process_branch(branch_dict, repo):
+    """ Takes a dictionary that has branch names as keys. This method sets
+    branches created in """
+    for branch_name in branch_dict:
+        branch = branch_dict[branch_name]
+        repo.get_branches()[branch_name] = Branch(branch[BRANCH_HEAD], branch_name)
+    
     
