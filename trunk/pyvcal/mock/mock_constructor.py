@@ -16,7 +16,7 @@ REPOSITORY_REVISIONS = 'revisions'
 BRANCH_KEY = 'branches'
 BRANCH_HEAD = 'head'
 
-def construct_repository(path):
+def construct_repository(path, key=None):
     """ read_yaml takes a path to a yaml file """
     fsock = open(path)
     
@@ -32,8 +32,11 @@ def construct_repository(path):
     
     finally:
         fsock.close()
-        
-    return repository
+    
+    if key:
+        return repository[key]
+    else:
+        return repository
 
 def get_value_default(dict, key, default):
     """ Returns dict[key] if exists, otherwise returns default """
