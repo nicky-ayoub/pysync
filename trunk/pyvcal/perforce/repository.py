@@ -2,16 +2,12 @@ from __future__ import with_statement
 
 from .revision import Revision
 from .branch import Branch
+from .p4client import P4Client
 
 import os # For repository creation :(
 import subprocess
 
 import re
-
-import P4
-
-
-
 class Repository(object):
     """A Perforce repository. """    
     def __init__(self, user=None, password=None, host=None, port=str(1666), client=None, cwd=None, depot="depot"):
@@ -43,10 +39,11 @@ class Repository(object):
         A PyVCAL branch maps to a Perforce codeline, assumed to be a folder
         in the root of the depot.
         """
+        
         with self._init_client() as p4c:
             raw_change_list = p4c.run("files", "//%(depot)s/..." % {'depot' : self._depot})
         
-        r = re.compile(r"//%(depot)s/([^/]+)/.*")
+        r = re.compile(r"//%(depot)s/([^/]+)/.*" % {'depot' : self._depot})
         
         branches = {}
         for change in raw_change_list:
@@ -54,10 +51,10 @@ class Repository(object):
             # File in folder
             if m:
                 name = m.group(1)
-                branches.setdefault(name, Branch(name=name))
+                branches.setdefault(name, Branch(repo=self, name=name))
             # File in depot root, treat depot root as a branch
             else:
-                branches.setdefault("", Branch(name=""))
+                branches.setdefault("", Branch(repo=self, name=""))
 
         return branches
         
@@ -91,46 +88,3 @@ class Repository(object):
         
         return repo
         
-class P4Client(object):
-    """
-    with P4Client(user, password, host, port , client, cwd) as p4c:
-        p4c.do_stuff()
-    """
-    
-    def __init__(self, user, password, host, port, client, cwd):
-        """Initializes a P4 object"""
-        self._p4c = P4.P4()
-        
-        if user:
-            self._p4c.user = user
-        if host:
-            self._p4c.host = host
-        if port:
-            self._p4c.port = port
-        if client:
-            self._p4c.client = client
-        if cwd:
-           self._p4c.cwd = cwd
-        self._password = password
-        
-    def __enter__(self):
-        """Connects a P4 object"""
-        self._p4c.connect()
-        if self._password:
-            self._p4c.login(self._password)
-        return self._p4c
-    
-    def __exit__(self, type, value, traceback):
-        """Tear down the P4 object"""
-        self._p4c.disconnect()
-
-    @property
-    def host(self):
-        """Return the server host"""
-        return self._p4c.host
-        
-    @property
-    def port(self):
-        """Return the server port"""
-        return self._p4c.port
-
