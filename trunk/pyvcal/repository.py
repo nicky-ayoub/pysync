@@ -8,11 +8,11 @@ class Repository(object):
         raise NotImplementedError
         
     def get_branches(self):
-        """Return the branches available in the repository"""
+        """Return the branches available in the repository as a dictionary-like object keyed by branch name."""
         raise NotImplementedError 
         
     def get_revisions(self):
-        """Return the Revision objects available in this repository"""
+        """Return the Revision objects available in this repository as a dictionary-like object keyed by revision identifier."""
         raise NotImplementedError 
     
     uri = property(get_uri)
