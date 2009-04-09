@@ -14,7 +14,7 @@ class RevisionProperties(object):
         pass
         
     def get_time(self):
-        """Return the (TODO dataformat) of the revision"""
+        """Return the datetime of the revision"""
         pass
     
     def get_revision_id(self):
