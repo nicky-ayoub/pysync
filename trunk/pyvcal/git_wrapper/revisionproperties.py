@@ -5,13 +5,13 @@ from .user import User
 
 class RevisionProperties(object):
     """Metadata for a revision"""
-    def __init__(self, id_hash, repo, rev, path):
+    def __init__(self, id_hash, repo, rev):
         """Initialize a RevisionProperties based on provided Git commit ID hash"""
         super(RevisionProperties, self).__init__()
         self._id = id_hash # should be a 40char git commit hash id
         self._repo = repo # repo this belongs to
         self._rev = rev
-        self._path = path
+        self._path = self._repo.path
     
     def get_revision(self):
         """Return the Revision obj to which these properties apply."""
