@@ -95,9 +95,9 @@ class Repository(object):
         return path_level_info[0].keys()
 
     @classmethod
-    def create(cls, **kwargs):
+    def create(cls, path):
         """ Create a new Repository and return it. """
-        raise NotImplementedError
+        return repos.create(path)
 
     uri = property(get_uri)
     branches = property(get_branches)
