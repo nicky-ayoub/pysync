@@ -41,8 +41,7 @@ class Revision(object):
                                             paths.keys(),
                                             self.ra_api,
                                             rpaths))
-           
-        #self.ra_api.get_file_revs((os.path.join(self.branch_path, self.paths[0])), 1, self.revnum, handle)
+        
         self.ra_api.get_log(callback=cb, paths=[log_path],
                            start=1, end=(rid-1), 
                            discover_changed_paths=True,
@@ -51,7 +50,7 @@ class Revision(object):
         self.r_predecessors.reverse()
         return self.r_predecessors
 
-    def _get_ra_api(self):
+    def get_ra_api(self):
         """ Returns the self.ra_api variable associated with this Revision object"""
         return self.ra_api
 
@@ -72,7 +71,6 @@ class Revision(object):
         """
         parents = self.get_predecessors()
         return self.diff(self, parents[0])
-        #raise NotImplementedError
         
     @classmethod
     def diff(cls, src, dst, paths=None):

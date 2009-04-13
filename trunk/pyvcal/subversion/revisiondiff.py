@@ -1,5 +1,8 @@
 import os
 
+from difflib import Differ
+from pprint import pprint
+
 from subvertpy import repos, ra, NODE_DIR, NODE_FILE
 
 class RevisionDiff(object):
@@ -10,27 +13,23 @@ class RevisionDiff(object):
         
         self._rev1 = revision1
         self._rev2 = revision2
+        self.ra_api = self._rev2.get_ra_api()
         
-    def get_value():
+    def get_value(self):
         """Concatenation of Unified Diffs of resources between the revisions."""
-        self.ra_api = self._rev1._get_ra_api()
-        # getting the revision id of the element to be diffed.
-        self.rev1_num = self._rev1.properties.revision_number
-        self.rev2_num = self._rev2.properties.revision_number
-        
-        resource1 = self._rev1.get_resource()
-        resource2 = self._rev2.get_resource()
-        
-        #raise NotImplementedError 
-        #do_diff(self, revision_to_update, diff_target, versus_url, diff_editor, 
-        #recurse=True, ignore_ancestry=False, text_deltas=False, depth=None)
-        return self.ra_api.do_diff(self.rev1_num, self.rev2_num, resource2.full_path(), 
-                                    diff_editor, recurse=True, ignore_ancestry=False, 
-                                    text_deltas=False, depth=None)
 
-    def get_diff():
-        resource1 = self._rev1.get_resource()
-        resource2 = self._rev2.get_resource()
+        # getting the revision id of the element to be diffed.
+        self.rev1_num = self._rev1.properties.revision_id
+        self.rev2_num = self._rev2.properties.revision_id
+        
+        resource1 = str(self._rev1.get_resource().data)
+        resource2 = str(self._rev2.get_resource().data)
+        
+        differ = Differ()
+        result = list(differ.compare(resource1, resource2))
+
+        return ''.join(result)
         
     value = property(get_value)
+
 

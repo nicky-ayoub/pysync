@@ -70,5 +70,5 @@ class Tree(Resource):
         
     path = property(get_path)
     contents = property(get_contents)
-
+    data = property(get_data)
 
