@@ -41,7 +41,7 @@ class Repository(object):
         """
         
         with self._init_client() as p4c:
-            raw_change_list = p4c.run("files", "//%(depot)s/..." % {'depot' : self._depot})
+            raw_change_list = p4c.run("files", self._depot_path())
         
         r = re.compile(r"//%(depot)s/([^/]+)/.*" % {'depot' : self._depot})
         
@@ -58,11 +58,14 @@ class Repository(object):
 
         return branches
         
+    def _depot_path(self):
+        return "//%(depot)s/..." % {'depot' : self._depot}
+        
     def get_revisions(self):
         """Return the Revision objects available in this repository"""
         with self._init_client() as p4c:
             raw_changes = p4c.run("changes")
-            raw_revisions = [Revision(c) for c in raw_changes]
+            raw_revisions = [Revision(self, c) for c in raw_changes]
             result = {}
             for r in raw_revisions:
                 result[r.properties.revision_id] = r   
