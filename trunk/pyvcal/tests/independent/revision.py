@@ -2,7 +2,7 @@ import modulespecific
 import unittest
 
 class TestRevision(modulespecific.ModuleSpecificTestCase):
-    """Test the RevisionProperties interface."""        
+    """Test the Revision interface."""        
     def setUp(self):
         """Create and connect to a repository."""
         self.basic_repo = self.test_module.BasicRepository()
@@ -17,7 +17,7 @@ class TestRevision(modulespecific.ModuleSpecificTestCase):
         self.basic_repo.teardown()
 
 class TestRevisionPredecessors(TestRevision):
-    """Test RevisionProperties.predecessors"""
+    """Test Revision.predecessors"""
     def runTest(self):
         """Test that the latest revision returns the expected predecessor i.e: Revision(rev_num - 1)."""
         predecessors = self.head.predecessors
@@ -26,7 +26,7 @@ class TestRevisionPredecessors(TestRevision):
         self.assertEquals(predecessors[0].properties.commit_message, "Rename README.txt to README")
 
 class TestRevisionGetProperties(TestRevision):
-    """Test RevisionProperties.properties"""
+    """Test Revision.properties"""
     def runTest(self):
         """Test that the 'basic' test Revision.properties returns a non-null properties object."""
         props = self.head.properties
@@ -36,8 +36,12 @@ class TestRevisionGetProperties(TestRevision):
         self.assert_(props.commit_message)        
         
 class TestRevisionDiffWithParents(TestRevision):
-    """Test RevisionProperties.diff_with_parents"""
+    """Test Revision.diff_with_parents"""
     def runTest(self):
         """Test the get diff with parents returns a valid RevisionDiff object."""
-        self.fail("Not implemented yet.")
+        diff = self.head.diff_with_parent
+        diff_value = diff.value
+        self.assertEquals("", diff_value)
+        
+        #TODO need a better test... base on branch_and_merge test repo
 
