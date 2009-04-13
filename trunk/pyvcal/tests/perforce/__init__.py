@@ -43,5 +43,5 @@ test_perforce = TestSuite()
 def test_create(testinstance):
     """Test Perforce repository creation."""
     repo = api.Repository.create()
+    testinstance.assertEquals(len(repo.revisions), 0)
     os.kill(repo.p4d.pid, signal.SIGKILL)
-    testinstance.fail("Not implemented yet")
