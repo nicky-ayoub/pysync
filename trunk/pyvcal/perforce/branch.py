@@ -14,12 +14,12 @@ class Branch(object):
     def get_head(self):
         """Return the latest Revision in the branch"""
         with self._repo._init_client() as p4c:
-            raw_change_list = p4c.run("changes", "//%(depot)s/%(branch_path)s..." % 
+            raw_change_list = p4c.run("changes", "-m", "1", "//%(depot)s/%(branch_path)s..." % 
                 {'depot' : self._repo._depot, 
                  'branch_path' : self._branch_path()})
                  
             latest_change = raw_change_list[0]
-            return Revision(latest_change)
+            return Revision(self._repo, latest_change)
             
         
     def get_name(self):
