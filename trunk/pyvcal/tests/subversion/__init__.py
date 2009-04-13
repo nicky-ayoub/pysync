@@ -30,4 +30,5 @@ class BasicRepository(object):
 test_subversion = TestSuite()
 
 def test_create(testinstance):
+    repo = api.Repository.create(os.path.join(path, 'repo01'))
     testinstance.fail("Not implemented yet.")
