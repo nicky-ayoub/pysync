@@ -1,4 +1,5 @@
 from property import ResourceProperties
+
 import os 
 
 from subvertpy import repos, ra, NODE_DIR, NODE_FILE
@@ -18,8 +19,10 @@ class Resource(object):
     
     def get_latest_revision(self):
         """ Return the last revision this was modified """
-        # svn info self.full_path()
-        raise NotImplementedError
+        #self.rev = Revision(self._revnum, "", "", "", self._path, self._ra_api, self._branch_path)
+                
+        #return self.rev.predecessors[0]
+        raise NotImplementedError 
 
     def get_properties(self):
         """ Return the properties of a resource """
@@ -30,7 +33,7 @@ class Resource(object):
 
     def full_path(self):
         """ Returns the full path of this Resource """
-        return str(os.path.join(self._branch_path, self._path))
+        return str(os.path.join(self._branch_path, self._path[0]))
 
     def basename(self):
         """ Returns the Resource path """
@@ -49,7 +52,12 @@ class Resource(object):
         """ To be overriden in File """
         return False
 
+    def get_data(self):
+        """ To be overriden in File/Tree """
+        return ''
+
     latest_revision = property(get_latest_revision)
     properties = property(get_properties)
+    data = property(get_data)
 
 
