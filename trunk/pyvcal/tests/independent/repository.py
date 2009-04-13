@@ -38,7 +38,7 @@ class TestRepositoryCreate(modulespecific.ModuleSpecificTestCase):
     """Test repository creation."""
     def runTest(self):
         """Defer testing to the individual test module."""
-        self.test_module.test_create()
+        self.test_module.test_create(testinstance=self)
         
     
         

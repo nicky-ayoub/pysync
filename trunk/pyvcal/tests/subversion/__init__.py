@@ -28,3 +28,6 @@ class BasicRepository(object):
         rmrf(os.path.join(path, 'repo01'))
 
 test_subversion = TestSuite()
+
+def test_create(testinstance):
+    testinstance.fail("Not implemented yet.")

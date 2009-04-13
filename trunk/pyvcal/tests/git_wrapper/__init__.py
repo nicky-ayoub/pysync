@@ -29,8 +29,9 @@ class BasicRepository(object):
 
 test_git = TestSuite()
 
-def test_create():
+def test_create(testinstance):
     """Test Git repository creation."""
     repo = api.Repository.create(os.path.join(path, 'testrepo01'))
+    testinstance.fail("Test not implemented yet")
 
 
