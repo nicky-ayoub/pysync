@@ -3,6 +3,8 @@ from resource import Resource
 from revisiondiff import RevisionDiff
 
 from subvertpy import repos, ra, NODE_NONE, NODE_DIR, NODE_FILE
+from datetime import datetime
+import os
 
 class Revision(object):
     """ The complete state of a branch at a given time """
@@ -20,10 +22,34 @@ class Revision(object):
 		
         self._proplist = RevisionProperties(self, revnum, author, log, date)
         self._resource = Resource(self.ra_api, self.branch_path, self.paths, self.revnum)
-
+ 
     def get_predecessors(self):
         """ Return a list of Revision(s) that flow into this Revision """
-        raise NotImplementedError 
+        self.r_predecessors = []
+        log_path = self.branch_path
+        rpaths = self.paths[0]
+        rid = self.revnum
+
+        def cb(paths, rev_id, props, has_children=False):
+            paths = paths or {}
+            if rpaths in paths:
+                self.r_predecessors.append(Revision(rev_id,
+                                            props.get('svn:author', ''),
+                                            props.get('svn:log', ''),
+                                            datetime.strptime(props['svn:date'].split('.')[0],
+                                                 "%Y-%m-%dT%H:%M:%S"),
+                                            paths.keys(),
+                                            self.ra_api,
+                                            rpaths))
+           
+        #self.ra_api.get_file_revs((os.path.join(self.branch_path, self.paths[0])), 1, self.revnum, handle)
+        self.ra_api.get_log(callback=cb, paths=[log_path],
+                           start=1, end=(rid-1), 
+                           discover_changed_paths=True,
+                           revprops=["svn:date", "svn:author", "svn:log"])
+
+        self.r_predecessors.reverse()
+        return self.r_predecessors
 
     def _get_ra_api(self):
         """ Returns the self.ra_api variable associated with this Revision object"""
@@ -36,44 +62,23 @@ class Revision(object):
     def get_properties(self):
         """ Get the RevisionProperties for this revision """
         return self._proplist
-        
+
     def get_diff_with_parent(self, paths=None):
-        """ Return the RevisionDiff from this revision to its parent, optionally 
-	    restricted to the given file(s) on paths
-        
-        If there is more than one parent, this method may return a fake RevisionDiff 
-    	with no content to represent a merge.
+        """ Return the RevisionDiff from this revision to its parent, optionally
+        restricted to the given file(s) on paths
+       
+        If there is more than one parent, this method may return a fake RevisionDiff
+        with no content to represent a merge.
         """
-        #parents = self.get_predecessors()
-        #for p in parents:
-        #    diff(self, p, paths)
-        raise NotImplementedError
+        parents = self.get_predecessors()
+        return self.diff(self, parents[0])
+        #raise NotImplementedError
         
     @classmethod
     def diff(cls, src, dst, paths=None):
         """ Return the RevisionDiff from Revision src to Revision dst, optionally 
 	    restricted to the given file(s) on paths """
-        
-        self.diff_dict = {}
-        paths = os.path.join(self.branch_path, paths)
-
-        for path in self.paths:
-            # We do not want a leading '/' on our path
-            if path[0] == '/':
-                path = path[1:]
-
-            if not path.startswith(paths):
-                continue
-            src = Revision((self.revnum-1), self.author, self.log, 
-                            self.date, self._get_node_path(path), 
-                            self.ra_api, self.branch_path)
-            dst = Revision(self.revnum, self.author, self.log, 
-                            self.date, self._get_node_path(path), 
-                            self.ra_api, self.branch_path)
-
-            self.diff_dict[self._get_node_path(path)] = RevisionDiff(src, dst)
-
-        return self.diff_dict
+        return RevisionDiff(src, dst)
 
     def _get_node_path(self, path):
         """Return the node path of a given path which is everything
