@@ -31,7 +31,13 @@ test_git = TestSuite()
 
 def test_create(testinstance):
     """Test Git repository creation."""
-    repo = api.Repository.create(os.path.join(path, 'testrepo01'))
-    testinstance.fail("Test not implemented yet")
+    basic_repo = BasicRepository()
+    repo = basic_repo.repo()
+    # repo = api.Repository.create(os.path.join(path, 'testrepo01'))
+    # print len(repo.revisions)
+    # print repo.revisions.items()
+    testinstance.assertEquals(len(repo.revisions), 4)
+    # testinstance.fail("Test not implemented yet")
+    
 
 

@@ -57,7 +57,8 @@ class Repository(object):
     @classmethod
     def create(cls, path):
         """Create a new Repository at the given path and return it."""
-        return git.Repo.create(path)
+        # return git.Repo.create(path)
+        return Repository(path)
 
     def _connect(self, uri):
         """Initialize a connection to the repository; uri is a string."""
