@@ -2,6 +2,8 @@
 # from pyvcal.git_wrapper.revision import Revision
 
 from .user import User
+import datetime
+import time
 
 class RevisionProperties(object):
     """Metadata for a revision"""
@@ -9,7 +11,7 @@ class RevisionProperties(object):
         """Initialize a RevisionProperties based on provided Git commit ID hash"""
         super(RevisionProperties, self).__init__()
         self._id = id_hash # should be a 40char git commit hash id
-        self._repo = repo # repo this belongs to
+        self._repo = repo # repo this belongs to, git.Repo obj
         self._rev = rev
         self._path = self._repo.path
     
@@ -30,7 +32,8 @@ class RevisionProperties(object):
     def get_time(self):
         """Return the python timedate obj of the revision"""
         # relies on Revision to pass along the python timedate obj
-        return self._repo.commit(self._id).committed_date
+        repotime = self._repo.commit(self._id).committed_date # time.time_struct
+        return datetime.datetime.fromtimestamp(time.mktime(repotime))
     
     def get_revision_id(self):
         """Return the revision identifier of the revision."""
