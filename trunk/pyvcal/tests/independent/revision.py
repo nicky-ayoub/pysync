@@ -22,7 +22,7 @@ class TestRevisionPredecessors(TestRevision):
         """Test that the latest revision returns the expected predecessor i.e: Revision(rev_num - 1)."""
         predecessors = self.head.predecessors
         self.assertEquals(1, len(predecessors))
-        self.assert_(self.head.properties.time < predecessors[0].properties.time)
+        self.assert_(self.head.properties.time > predecessors[0].properties.time)
         self.assertEquals(predecessors[0].properties.commit_message, "Rename README.txt to README")
 
 class TestRevisionGetProperties(TestRevision):
