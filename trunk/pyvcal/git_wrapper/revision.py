@@ -17,7 +17,8 @@ class Revision(object):
     def get_predecessors(self):
         """Return a list of immediate Revisions that flow into this Revision"""
         parent_list = self._git_commit.parents # analogous to git.Commit[]
-        return list(Revision(p.id, p.repo) for p in parent_list)
+        predecessor_list = list(Revision(p.id, p.repo) for p in parent_list)
+        return predecessor_list
         
     def get_properties(self):
         """Get the RevisionProperties for this revision."""

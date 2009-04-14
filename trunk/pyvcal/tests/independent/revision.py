@@ -20,6 +20,9 @@ class TestRevisionPredecessors(TestRevision):
     """Test Revision.predecessors"""
     def runTest(self):
         """Test that the latest revision returns the expected predecessor i.e: Revision(rev_num - 1)."""
+        # PROBLEM: This test fails (at least on git) because there is only ONE
+        # revision in the test repo, therefore self.head.properties.time is equal
+        # to predecessors[0].properties.time
         predecessors = self.head.predecessors
         self.assertEquals(1, len(predecessors))
         self.assert_(self.head.properties.time > predecessors[0].properties.time)
