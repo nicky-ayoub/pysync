@@ -7,12 +7,12 @@ class Repository(object):
     # repository. Each repository must have a unique path
     repository = {}
     
-    def __init__(self, path, branches={}, revisions=[], new_repo=False):
+    def __init__(self, path, branches={}, revisions={}, new_repo=False):
         if new_repo or path not in self.__class__.repository:
             super(Repository, self).__init__()
             mock = Mock({"get_uri": path,
                          "get_branches": PerpetualReturnValues(branches),
-                         "get_revisions": revisions})
+                         "get_revisions": PerpetualReturnValues(revisions)})
             self.__class__.repository[path] = mock
         
         self.mock = self.__class__.repository[path]

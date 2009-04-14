@@ -8,11 +8,11 @@
 
 repository:
     path: http://www.somesvnpath.com/svn
-    branches:                               # this is optional
+    branches:           # optional
         - branch1
         - branch2
         - branch3
-    revisions:                              # this is optional
+    revisions:          # optional
         - revision1
         - revision2
         - revision3
@@ -23,3 +23,18 @@ branches:
         head: revision3
     branch2:
         head: revision1
+
+# Below is an exmaple of revisions representation in YAML
+revisions:
+    revision6:
+        predecessors:       # optional
+            - revision5
+            - revision4
+        properties: 
+            - revisionProp1
+            - revisionProp2
+        diffwithparent:     # optional
+            - some diff here
+        
+    
+    
