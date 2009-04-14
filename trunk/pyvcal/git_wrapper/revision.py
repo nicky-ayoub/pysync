@@ -38,16 +38,20 @@ class Revision(object):
     def _get_identity(self):
         """Return revision ID of this revision; will be a 40-char hash"""
         return self._rev_id
-    
+   
+    def get_repo(self):
+        """Return associated repository"""
+        return self._repo
+
+    def get_git_commit(self):
+        """Return associated git.Commit obj"""
+        return self._git_commit
 
         
     @classmethod
     def diff(cls, a, b, paths=None):
         """Return the RevisionDiff from Revision src to Revision dst, optionally restricted to the given file(s) on paths"""
-        # Note, returns a git.diff object instead of a pyvcal.diff
-        # object since they have not been formalized yet
-        # TODO: rewrite this when pyvcal.diff has been formalized        
-        return RevisionDiff(a, b, self._repo)
+        return RevisionDiff(a, b, a.get_repo())
     
     predecessors = property(get_predecessors)
     properties = property(get_properties)

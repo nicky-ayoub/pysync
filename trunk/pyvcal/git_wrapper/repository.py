@@ -52,7 +52,11 @@ class Repository(object):
         """
         revision_dict = dict((r.id, Revision(r.id, self._repo)) for r in self._repo.commits())
         return revision_dict
-        
+
+
+    def get_git_repo(self):
+        """Return corresponding git.Repo object"""
+        return self._repo
 
     @classmethod
     def create(cls, path):
