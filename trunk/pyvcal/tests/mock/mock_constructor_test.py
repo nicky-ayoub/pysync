@@ -30,7 +30,7 @@ class Mock_Constructor_Test(unittest.TestCase):
         repo = mc.process_repository(repo_dict[mc.REPOSITORY_KEY])
         
         self.assertEquals({}, repo.get_branches())
-        self.assertEquals([], repo.get_revisions())
+        self.assertEquals({}, repo.get_revisions())
         self.assertEquals('http://www.somesvnpath.com/svn', repo.get_uri())
         
         
@@ -39,7 +39,7 @@ class Mock_Constructor_Test(unittest.TestCase):
         repo = mc.process_repository(repo_dict[mc.REPOSITORY_KEY])
         
         self.assertEquals({'branch1': None, 'branch2': None}, repo.get_branches())
-        self.assertEquals([], repo.get_revisions())
+        self.assertEquals({}, repo.get_revisions())
         self.assertEquals('http://www.somesvnpath.com/svn2', repo.get_uri())
         
         
@@ -48,7 +48,7 @@ class Mock_Constructor_Test(unittest.TestCase):
         repo = mc.process_repository(repo_dict[mc.REPOSITORY_KEY])
         
         self.assertEquals({'branch1': None, 'branch2': None}, repo.get_branches())
-        self.assertEquals(['revision1', 'revision2'], repo.get_revisions())
+        self.assertEquals({'revision1': None, 'revision2': None}, repo.get_revisions())
         self.assertEquals('http://www.somesvnpath.com/svn3', repo.get_uri())
         
         
@@ -101,3 +101,26 @@ class Mock_Constructor_Test(unittest.TestCase):
         self.assertEquals('branch3', branch3.get_name())
         self.assertEquals('revision35', branch3.get_head())
         
+    def test_process_revision_simple(self):
+        revision_dict = self.fixture['testrevision1']
+        empty_repo = repository.Repository('some_svn_path')
+        
+        mc.process_revision(revision_dict, empty_repo)
+        
+        revision1 = empty_repo.get_revisions()['revision1']
+        
+        self.assertEquals([], revision1.get_predecessors())
+        self.assertEquals(['ignore'], revision1.get_properties())
+        self.assertEquals(None, revision1.get_diff_with_parent())
+        
+    def test_process_revision(self):
+        revision_dict = self.fixture['testrevision2']
+        empty_repo = repository.Repository('some_svn_path')
+        
+        mc.process_revision(revision_dict, empty_repo)
+        
+        revision6 = empty_repo.get_revisions()['revision6']
+        
+        self.assertEquals(['revision5', 'revision4'], revision6.get_predecessors())
+        self.assertEquals(None, revision6.get_properties())
+        self.assertEquals(['diffobject'], revision6.get_diff_with_parent())

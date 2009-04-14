@@ -32,4 +32,16 @@ testbranch2:
             head: revision35
         branch6:
             head: revision1
-    
+
+testrevision1:
+    revision1:
+        properties:
+            - ignore
+
+testrevision2:
+    revision6:
+        predecessors:
+            - revision5
+            - revision4
+        diffwithparent:
+            - diffobject
