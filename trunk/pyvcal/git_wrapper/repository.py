@@ -3,6 +3,7 @@ import git
 
 from .revision import Revision
 from .branch import Branch
+from .tree import Tree
 
 class Repository(object):
     """A Git repository."""
@@ -57,6 +58,10 @@ class Repository(object):
     def get_git_repo(self):
         """Return corresponding git.Repo object"""
         return self._repo
+        
+    def get_tree(self):
+        """Return tree at top-level of repo"""
+        return Tree(self._repo.tree().id, self._repo)
 
     @classmethod
     def create(cls, path):
@@ -88,3 +93,4 @@ class Repository(object):
     uri = property(get_uri)
     branches = property(get_branches)
     revisions = property(get_revisions)
+    tree = property(get_tree)
